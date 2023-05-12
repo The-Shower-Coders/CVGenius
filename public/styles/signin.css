@@ -1,0 +1,123 @@
+* {
+    font-family: 'Roboto', sans-serif;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+  }
+  .title {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+  }
+  .title2 {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 2px;
+  }
+  .email {
+    display: flex;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 0;
+  }
+  .email:focus {
+    outline: 0;
+  }
+  .password {
+    display: flex;
+    padding: 6px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 0;
+  }
+  .password:focus {
+    outline: 0;
+  }
+  .submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(37 99 235);
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    outline: 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .submit:hover {
+    cursor: pointer;
+    background-color: rgb(37 99 235 / 80%);
+  }
+  .submit:active {
+    background-color: rgb(37 99 235 / 100%);
+  }
+  .signupcontainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .linecontainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    color: white;
+    font-size: 12px;
+  }
+  .linecontainer .line {
+    display: flex;
+    flex: 1;
+    height: 1px;
+    background-color: white;
+  }
+  .signup {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: 1px solid white;
+    color: white;
+    font-weight: 400;
+    border-radius: 8px;
+  }
+  .back {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg,#F17C58, #E94584, #24AADB , #27DBB1,#FFDC18, #FF3706);
+  background-size: 600% 100%;
+  animation: gradient 16s linear infinite;
+  animation-direction: alternate;
+    z-index: -999;
+  }
+  @keyframes gradient {
+    0% {background-position: 0%}
+    100% {background-position: 100%}
+  }
+  
