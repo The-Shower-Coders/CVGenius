@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "1234",
+      "mail": "admin@example.com",
+      "userid": "5e47fa4adad0200eca9597414b460587723ee902"
+    },
+    {
+      "username": "admin2",
+      "password": "a",
+      "mail": "b",
+      "userid": "8ebd573faee57895b87222efbd082c156c27e321"
+    },
+    {
+      "username": "admin3",
+      "password": "a",
+      "mail": "b@c.b",
+      "userid": "778af38f495ac004c031fc8b9e04945a8d8da460"
+    },
+    {
+      "username": "admin4",
+      "password": "a",
+      "mail": "b@c.d",
+      "userid": "19e0d0ab199b7a991eb0c1e76a58ed2feaa144b1"
+    },
+    {
+      "username": "groophy",
+      "password": "pass",
+      "mail": "grplf@gmail.com",
+      "userid": "7802916bdfd58614072e534d7ffe64194ff106d1"
+    }
+  ]
+}

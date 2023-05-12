@@ -1,0 +1,31 @@
+{
+  "name": "cvgenius",
+  "version": "1.0.0",
+  "description": "Creating your CV with some powerful tools like grammer checking or ai support.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Shower-Coders/CVGenius.git"
+  },
+  "keywords": [
+    "cv",
+    "resume",
+    "insider",
+    "ai"
+  ],
+  "author": "The Shower Coders",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/The-Shower-Coders/CVGenius/issues"
+  },
+  "homepage": "https://github.com/The-Shower-Coders/CVGenius#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "sha1": "^1.1.1"
+  }
+}

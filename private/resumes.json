@@ -1,0 +1,41 @@
+{
+    "resumes": [
+        {
+            "userid": "5e47fa4adad0200eca9597414b460587723ee902",
+            "storedResumes": [
+                {
+                    "name": {
+                        "color": "black",
+                        "backcolor": "defualt",
+                        "text-decoration": "underline",
+                        "case": "uppercase"
+                    },
+                    "tags": {
+                        "color": "blue",
+                        "backcolor": "white",
+                        "text-decoration": "none",
+                        "case": "pascalcase",
+
+                        "and": "others..."
+                    }
+                },
+                {
+                    "name": {
+                        "color": "black",
+                        "backcolor": "defualt",
+                        "text-decoration": "underline",
+                        "case": "uppercase"
+                    },
+                    "tags": {
+                        "color": "blue",
+                        "backcolor": "white",
+                        "text-decoration": "none",
+                        "case": "pascalcase",
+                        
+                        "and": "others..."
+                    }
+                }
+            ]
+        }
+    ]
+}
