@@ -17,11 +17,17 @@ function setupRoutes() {
   // --------------------------------------------------------------------------
   // --------------------------------------------------------------------------
 
-  // islogin true  -> /app
-  // islogin false -> /
   app.get('/', (req, res) => {
-
     res.sendFile(__dirname + '/views/index.html');
-  });}
+  });
+
+  app.get('/signin', (req, res) => {
+    res.sendFile(__dirname + '/views/signin.html');
+  });
+
+  app.get('/signup', (req, res) => {
+    res.sendFile(__dirname + '/views/signin.html');
+  });
+}
 
 module.exports = setupRoutes;
