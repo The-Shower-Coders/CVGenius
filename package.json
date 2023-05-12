@@ -4,7 +4,8 @@
   "description": "Creating your CV with some powerful tools like grammer checking or ai support.",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "run": "nodemon index.js"
   },
   "repository": {
     "type": "git",
