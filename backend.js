@@ -20,9 +20,8 @@ function setupRoutes() {
   // islogin true  -> /app
   // islogin false -> /
   app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
-  });
 
-}
+    res.sendFile(__dirname + '/views/index.html');
+  });}
 
 module.exports = setupRoutes;
