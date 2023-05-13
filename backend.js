@@ -31,7 +31,6 @@ function setupRoutes() {
   app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
   });
-
   app.get('/signin', (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/app');
