@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles/signup.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="/scripts/signup.js"></script>
   <title>Login Sayfa</title>
 </head>
 <body>
@@ -16,10 +18,10 @@
       <div class="titlealt">Sign in to Cv</div>
       <div class="title2">genius</div>
     </div>
-    <input class="Username" type="Username" name="Username" id="Username" placeholder="Username">
+    <input class="username" type="username" name="username" id="username" placeholder="Username">
     <input class="email" type="email" name="email" id="email" placeholder="Email">
     <input class="password" type="password" name="password" id="password" placeholder="Password">
-    <button class="submit" type="submit">
+    <button class="submit" type="submit" onclick="signin()">
       <span>Giriş Yap</span>
       <i class="fa fa-sign-in" aria-hidden="true"></i>
     </button>
