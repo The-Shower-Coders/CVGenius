@@ -4,6 +4,7 @@ function signin() {
         .then(data => {
             var nd = JSON.parse(data);
             if (nd.code === -2) {
+                showError('Email or password was invalid.')
                 $('#email').addClass('shake')
                 $('#password').addClass('shake')
                 setTimeout(() => {
@@ -15,4 +16,11 @@ function signin() {
                 window.location.replace('/app')
             }
         });
+}
+
+function showError(message) {
+    $('.toast-body').html(message);
+    const toastLiveExample = document.getElementById('liveToast')
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    toastBootstrap.show()
 }
