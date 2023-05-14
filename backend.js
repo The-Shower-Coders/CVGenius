@@ -59,6 +59,7 @@ function setupRoutes() {
   // -3 -> mail already exists
   // -4 -> mail not valid (  *@*.*  )
   // -5 -> password not valid
+  // -6 -> username must be at least 4 characters long
   app.get('/api/signup', (req, res) => {
     // get values from query params
     const name = req.query.name,
@@ -80,6 +81,10 @@ function setupRoutes() {
     // check validity of password
     if (!schema.validate(pass)) {
       return res.send({ code: -5, problems: schema.validate(pass, { list: true }) })
+    }
+
+    if (name.length < 4) {
+      return res.send({ code: -6 });
     }
 
     // create account
