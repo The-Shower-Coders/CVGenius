@@ -40,13 +40,17 @@ body {
     outline: 0;
 }
 .password {
+    width: 100%;
+}
+.password {
     display: flex;
     padding: 6px;
     font-size: 16px;
     border-radius: 8px;
     border: 0;
+    margin: 0;
 }
-.password:focus {
+.password input:focus {
     outline: 0;
 }
 .submit {
@@ -170,4 +174,22 @@ body {
     60% {
         transform: translate3d(4px, 0, 0);
     }
+}
+.passwordcontainer{
+    display: flex;
+    position: relative;
+}
+.passwordcontainer button {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    outline: 0;
+    cursor: pointer;
 }
