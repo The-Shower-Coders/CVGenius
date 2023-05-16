@@ -1,40 +1,175 @@
 {
     "resumes": [
         {
-            "userid": "5e47fa4adad0200eca9597414b460587723ee902",
+            "userid": "6045045fc93ee43cdf8736a54b62039a9fbc79e9",
             "storedResumes": [
                 {
                     "name": {
-                        "color": "black",
-                        "backcolor": "defualt",
-                        "text-decoration": "underline",
-                        "case": "uppercase"
+                        "value": "Neriman Topçu"
                     },
-                    "tags": {
-                        "color": "blue",
-                        "backcolor": "white",
-                        "text-decoration": "none",
-                        "case": "pascalcase",
-
-                        "and": "others..."
-                    }
-                },
-                {
-                    "name": {
-                        "color": "black",
-                        "backcolor": "defualt",
-                        "text-decoration": "underline",
-                        "case": "uppercase"
+                    "job": {
+                        "value": "Web Developer"
                     },
-                    "tags": {
-                        "color": "blue",
-                        "backcolor": "white",
-                        "text-decoration": "none",
-                        "case": "pascalcase",
-                        
-                        "and": "others..."
-                    }
-                }
+                    "phone": {
+                        "value": "0505 001 12 12"
+                    },
+                    "email": {
+                        "value": "neriman.topcu@cvgenius.app"
+                    },
+                    "location": {
+                        "value": "Turkey/Istanbul"
+                    },
+                    "external-links": [
+                        {
+                            "fontawesomeIcon": "fa-brands fa-github",
+                            "value": "https://github.com/clowerty"
+                        },
+                        {
+                            "fontawesomeIcon": "fa-brands fa-linkedin",
+                            "value": "https://www.linkedin.com/in/neriman-top%C3%A7u-34800123a/"
+                        }
+                    ],
+                    "experiences": [
+                        {
+                            "job": {
+                                "value": "Web Developer"
+                            },
+                            "company": {
+                                "value": "Insider"
+                            },
+                            "working_period": {
+                                "value": {
+                                    "start": "2020",
+                                    "end": "2023"
+                                }
+                            },
+                            "location": {
+                                "value": "Turkey/Istanbul"
+                            },
+                            "description": {
+                                "value": "Insider connects data across channels, predicts future behavior with AI, and individualizes experiences from a single platform with the fastest time to value."
+                            },
+                            "points": [
+                                {
+                                    "value": "Something"
+                                },
+                                {
+                                    "value": "Something else"
+                                }
+                            ]
+                        }
+                    ],
+                    "education": [
+                        {
+                            "branch": {
+                                "value": "Web teknolojisleri"
+                            },
+                            "school": {
+                                "value": "Sabancı 50. Yıl Anadolu Lisesi"
+                            },
+                            "education_period": {
+                                "value": {
+                                    "start": "2019",
+                                    "end": "2023"
+                                }
+                            },
+                            "location": {
+                                "value": "Turkey/Istanbul"
+                            },
+                            "description": {
+                                "value": "Okulum bana çok şey kattı falan filan yalanlar..."
+                            },
+                            "points": [
+                                {
+                                    "value": "önemli noktalardan biri şudur"
+                                },
+                                {
+                                    "value": "diğeri şudur"
+                                }
+                            ]
+                        },
+                        {
+                            "branch": {
+                                "value": "Temel Eğitim"
+                            },
+                            "school": {
+                                "value": "Avcılar Ortaokulu"
+                            },
+                            "education_period": {
+                                "value": {
+                                    "start": "2015",
+                                    "end": "2019"
+                                }
+                            },
+                            "location": {
+                                "value": "Turkey/Istanbul"
+                            },
+                            "description": {
+                                "value": "Okulum bana çok şey kattı falan filan yalanlar..."
+                            },
+                            "points": [
+                                {
+                                    "value": "önemli noktalardan biri şudur"
+                                },
+                                {
+                                    "value": "diğeri şudur"
+                                }
+                            ]
+                        }
+                    ],
+                    "skills": [
+                        {
+                            "value": "HTML"
+                        },
+                        {
+                            "value": "CSS"
+                        },
+                        {
+                            "value": "DOM JS"
+                        },
+                        {
+                            "value": "VanillaJS"
+                        },
+                        {
+                            "value": "NODEJS"
+                        }
+                    ],
+                    "languages": [
+                        {
+                            "language": {
+                                "value": "Turkish"
+                            },
+                            "state": {
+                                "value": "Native"
+                            },
+                            "percent": {
+                                "value": "100"
+                            }
+                        },
+                        {
+                            "language": {
+                                "value": "English"
+                            },
+                            "state": {
+                                "value": "Proficient"
+                            },
+                            "percent": {
+                                "value": "75"
+                            }
+                        },
+                        {
+                            "language": {
+                                "value": "German"
+                            },
+                            "state": {
+                                "value": "Advenced"
+                            },
+                            "percent": {
+                                "value": "60"
+                            }
+                        }
+                    ]
+                }                
             ]
         }
     ]

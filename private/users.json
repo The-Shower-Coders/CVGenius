@@ -2,15 +2,9 @@
   "users": [
     {
       "username": "Groophy",
-      "password": "Mypass1234",
+      "password": "1234",
       "mail": "Groophycomputer@gmail.com",
-      "userid": "fd68b89d409cf778d34b6058575f0e8d4bf7f7cd"
-    },
-    {
-      "username": "Okey",
-      "password": "Mypass1234",
-      "mail": "a@b.c",
-      "userid": "59d8a2ce3803d97bf45761f325a5b34a37080497"
+      "userid": "6045045fc93ee43cdf8736a54b62039a9fbc79e9"
     }
   ]
 }

@@ -1,5 +1,6 @@
 const app = require('./main.js');
 const users = require('./private/users.json');
+const resumes = require('./private/resumes.json');
 var passwordValidator = require('password-validator');
 const {
   isAnyUndefined,
@@ -33,16 +34,23 @@ function setupRoutes() {
   });
   app.get('/signin', (req, res) => {
     if (req.cookies.userid) {
-      res.redirect('/app');
+      res.redirect('/resumes');
     }
     else res.sendFile(__dirname + '/views/signin.html');
   });
 
   app.get('/signup', (req, res) => {
     if (req.cookies.userid) {
-      res.redirect('/app');
+      res.redirect('/resumes');
     }
     res.sendFile(__dirname + '/views/signup.html');
+  });
+
+  app.get('/resumes', (req, res) => {
+    if (!req.cookies.userid) {
+      res.redirect('/signin');
+    }
+    res.sendFile(__dirname + '/views/resumes.html');
   });
 
   // --------------------------------------------------------------------------
@@ -128,6 +136,28 @@ function setupRoutes() {
     }
 
     return res.send({ code: 0, userid: userid })
+  });
+
+  // get resumes by userid
+  // 0 -> success
+  // -1 -> userid not found
+  app.get('/api/getresumes', (req, res) => {
+    const userid = req.query.userid;
+
+    if (!userid) {
+      return res.send({ code: -1 })
+    }
+
+    const resumeList = resumes.resumes.find(resumelist => resumelist.userid === userid);
+    if (!resumeList) {
+      return res.send({ code: -1 })
+    }
+
+    return res.send({ code: 0, resumeList: resumeList.storedResumes })
+  });
+
+  app.get('/api/json2html', (req, res) => {
+    
   });
 }
 
