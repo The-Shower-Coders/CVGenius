@@ -2,7 +2,7 @@ const app = require('./main.js');
 const users = require('./private/users.json');
 const resumes = require('./private/resumes.json');
 var passwordValidator = require('password-validator');
-const puppeteer = require('puppeteer');
+const getBrowserInstance = require('./puppeteerInstance');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const {
@@ -28,6 +28,7 @@ schema
 
 
 function setupRoutes() {
+  getBrowserInstance()
 
   // --------------------------------------------------------------------------
   // --------------------------------------------------------------------------
@@ -167,17 +168,11 @@ function setupRoutes() {
 
     let uuid = uuidv4();
     const filePath = __dirname + '/private/temp_previews/' + uuid + '.pdf';
-    puppeteer
-      .launch()
-      .then((browser) => {
-        return browser.newPage();
-      })
-      .then((page) => {
-        return page.setContent(html).then(() => page);
-      })
-      .then((page) => {
-        return page.pdf({ path: './private/temp_previews/' + uuid + '.pdf', format: 'A4' });
-      })
+
+    getBrowserInstance()
+      .then(browser => browser.newPage())
+      .then(page => page.setContent(html).then(() => page))
+      .then(page => page.pdf({ path: './private/temp_previews/' + uuid + '.pdf', format: 'A4' }))
       .then(() => {
         // PDF successfully created
         // Send the response with the generated UUID
@@ -189,7 +184,7 @@ function setupRoutes() {
             fs.unlink(filePath, (error) => {
               if (error) {
                 console.error('Error deleting file:', error);
-              }
+              } 
             });
           }
         });
