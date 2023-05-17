@@ -1,4 +1,18 @@
-function signin() {
+let passwordVisible = false;
+
+function view() {
+    passwordVisible = !passwordVisible;
+    if (passwordVisible) {
+        $('#password').attr('type', 'text')
+        $('#view').html('<i class="fas fa-eye-slash"></i>')
+    } else {
+        $('#password').attr('type', 'password')
+        $('#view').html('<i class="fas fa-eye"></i>')
+    }
+}
+
+
+function signup() {
     fetch(`/api/signup?name=${$('#username').val()}&password=${$('#password').val()}&mail=${$('#email').val()}`)
         .then(response => response.text())
         .then(data => {
@@ -50,8 +64,8 @@ function signin() {
                     $('#username').removeClass('shake')
                 }, 1000);
             } else if (nd.code === 0) {
-                document.cookie = "userid="+nd.userid;
-                window.location.replace('/app')
+                document.cookie = "userid=" + nd.userid;
+                window.location.replace('/resumes')
             }
         });
 } 

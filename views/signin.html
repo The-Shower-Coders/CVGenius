@@ -34,7 +34,12 @@
       <div class="title2">genius</div>
     </div>
     <input class="email" type="email" name="email" id="email" placeholder="Username or Mail">
-    <input class="password" type="password" name="password" id="password" placeholder="Password">
+    <div class="passwordcontainer">
+      <input class="password" type="password" name="password" id="password" placeholder="Password">
+      <button onclick="view()" id="view">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </button>
+    </div>
     <button class="submit" type="submit" onclick="signin()">
       <span>Giriş Yap</span>
       <i class="fa fa-sign-in" aria-hidden="true"></i>

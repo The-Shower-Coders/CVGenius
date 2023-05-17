@@ -2,6 +2,9 @@ const app = require('./main.js');
 const users = require('./private/users.json');
 const resumes = require('./private/resumes.json');
 var passwordValidator = require('password-validator');
+const puppeteer = require('puppeteer');
+const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
 const {
   isAnyUndefined,
   isValueExists,
@@ -10,6 +13,9 @@ const {
   isValidEmail
 
 } = require('./utils.js');
+const {
+  json2html_teplate_standart
+} = require('./template_standart.js');
 
 var schema = new passwordValidator();
 schema
@@ -157,7 +163,42 @@ function setupRoutes() {
   });
 
   app.get('/api/json2html', (req, res) => {
-    
+    let html = json2html_teplate_standart(resumes.resumes.find(resumelist => resumelist.userid === '6045045fc93ee43cdf8736a54b62039a9fbc79e9').storedResumes[0]);
+
+    let uuid = uuidv4();
+    const filePath = __dirname + '/private/temp_previews/' + uuid + '.pdf';
+    puppeteer
+      .launch()
+      .then((browser) => {
+        return browser.newPage();
+      })
+      .then((page) => {
+        return page.setContent(html).then(() => page);
+      })
+      .then((page) => {
+        return page.pdf({ path: './private/temp_previews/' + uuid + '.pdf', format: 'A4' });
+      })
+      .then(() => {
+        // PDF successfully created
+        // Send the response with the generated UUID
+        res.sendFile(filePath, (error) => {
+          if (error) {
+            console.error('Error sending file:', error);
+          } else {
+            // Delete the file after sending it
+            fs.unlink(filePath, (error) => {
+              if (error) {
+                console.error('Error deleting file:', error);
+              }
+            });
+          }
+        });
+      })
+      .catch((error) => {
+        // Handle error
+        console.log(error);
+        res.send({ code: -1 });
+      });
   });
 }
 

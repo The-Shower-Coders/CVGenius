@@ -31,14 +31,19 @@
   <div class="back"></div>
   <div class="container">
     <div class="title">
-      <div class="titlealt">Sign in to Cv</div>
+      <div class="titlealt">Sign up to Cv</div>
       <div class="title2">genius</div>
     </div>
     <input class="username" type="username" name="username" id="username" placeholder="Username">
     <input class="email" type="email" name="email" id="email" placeholder="Email">
-    <input class="password" type="password" name="password" id="password" placeholder="Password">
-    <button class="submit" type="submit" onclick="signin()">
-      <span>Giriş Yap</span>
+    <div class="passwordcontainer">
+      <input class="password" type="password" name="password" id="password" placeholder="Password">
+      <button onclick="view()" id="view">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </button>
+    </div>
+    <button class="submit" type="submit" onclick="signup()">
+      <span>Kayıt Ol</span>
       <i class="fa fa-sign-in" aria-hidden="true"></i>
     </button>
     </div>

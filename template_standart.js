@@ -1,8 +1,6 @@
-function json2html_teplate_standart(data) {
-    let inner = '';
+const fs = require('fs');
 
-    
-
+function json2html_teplate_standart(json) {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -48,6 +46,10 @@ function json2html_teplate_standart(data) {
                     </div>
                 </div>
             </div>
+            <script>
+            let json = JSON.parse(${'`'}${JSON.stringify(json)}${'`'})
+            ${fs.readFileSync('./templatejs.js.format', 'utf8')}
+            </script>
         </body>
     </html>    
     ` 
