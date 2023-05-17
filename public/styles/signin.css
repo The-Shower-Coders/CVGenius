@@ -1,7 +1,7 @@
 * {
-    font-family: 'Roboto', sans-serif;
-  }
-  body {
+    font-family: "Roboto", sans-serif;
+}
+body {
     margin: 0;
     padding: 0;
     display: flex;
@@ -9,47 +9,51 @@
     align-items: center;
     height: 100vh;
     position: relative;
-  }
-  .container {
+}
+.container {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 300px;
-  }
-  .title {
+}
+.title {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     font-size: 30px;
     font-weight: bold;
     color: white;
-  }
-  .title2 {
+}
+.title2 {
     font-size: 16px;
     font-weight: normal;
     margin-bottom: 2px;
-  }
-  .email {
+}
+.email {
     display: flex;
     padding: 8px;
     font-size: 16px;
     border-radius: 8px;
     border: 0;
-  }
-  .email:focus {
+}
+.email:focus {
     outline: 0;
-  }
-  .password {
+}
+.password {
+    width: 100%;
+}
+.password {
     display: flex;
     padding: 6px;
     font-size: 16px;
     border-radius: 8px;
     border: 0;
-  }
-  .password:focus {
+    margin: 0;
+}
+.password input:focus {
     outline: 0;
-  }
-  .submit {
+}
+.submit {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -65,20 +69,20 @@
     outline: 0;
     font-size: 14px;
     font-weight: 500;
-  }
-  .submit:hover {
+}
+.submit:hover {
     cursor: pointer;
     background-color: rgb(37 99 235 / 80%);
-  }
-  .submit:active {
+}
+.submit:active {
     background-color: rgb(37 99 235 / 100%);
-  }
-  .signupcontainer {
+}
+.signupcontainer {
     display: flex;
     flex-direction: column;
     gap: 12px;
-  }
-  .linecontainer {
+}
+.linecontainer {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -86,14 +90,14 @@
     gap: 4px;
     color: white;
     font-size: 12px;
-  }
-  .linecontainer .line {
+}
+.linecontainer .line {
     display: flex;
     flex: 1;
     height: 1px;
     background-color: white;
-  }
-  .signup {
+}
+.signup {
     padding-top: 6px;
     padding-bottom: 6px;
     font-size: 16px;
@@ -106,18 +110,73 @@
     color: white;
     font-weight: 400;
     border-radius: 8px;
-  }
-  .back {
+}
+.back {
     position: absolute;
     inset: 0;
-    background: linear-gradient(45deg,#F17C58, #E94584, #24AADB , #27DBB1,#FFDC18, #FF3706);
-  background-size: 600% 100%;
-  animation: gradient 16s linear infinite;
-  animation-direction: alternate;
+    background: linear-gradient(
+        45deg,
+        #f17c58,
+        #e94584,
+        #24aadb,
+        #27dbb1,
+        #ffdc18,
+        #ff3706
+    );
+    background-size: 600% 100%;
+    animation: gradient 16s linear infinite;
+    animation-direction: alternate;
     z-index: -999;
-  }
-  @keyframes gradient {
-    0% {background-position: 0%}
-    100% {background-position: 100%}
-  }
-  
+}
+@keyframes gradient {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+.shake {
+    animation: shakekey 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    perspective: 1000px;
+}
+
+@keyframes shakekey {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+.passwordcontainer{
+    display: flex;
+    position: relative;
+}
+.passwordcontainer button {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    outline: 0;
+    cursor: pointer;
+}
