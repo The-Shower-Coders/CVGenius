@@ -162,7 +162,7 @@ function setupRoutes() {
     return res.send({ code: 0, resumeList: resumeList.storedResumes })
   });
 
-  app.get('/api/json2html', (req, res) => {
+  app.get('/api/json2pdf', (req, res) => {
     let html = json2html_teplate_standart(resumes.resumes.find(resumelist => resumelist.userid === '6045045fc93ee43cdf8736a54b62039a9fbc79e9').storedResumes[0]);
 
     let uuid = uuidv4();
