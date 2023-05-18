@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-function json2html_teplate_standart(json) {
+function json2html_template_standart(json) {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -738,4 +738,4 @@ h5 {
 
 `
 
-module.exports = { json2html_teplate_standart }
+module.exports = { json2html_template_standart }
