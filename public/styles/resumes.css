@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+}
+
+.back {
+    position: absolute;
+    height: 100%;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        #f17c58,
+        #e94584,
+        #24aadb,
+        #27dbb1,
+        #ffdc18,
+        #ff3706
+    );
+    background-size: 600% 100%;
+    animation: gradient 16s linear infinite;
+    animation-direction: alternate;
+    z-index: -999;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+.handpage {
+    position: absolute;
+    width: calc(100vw - 50px);
+    height: calc(100vh - 50px);
+    background-color: white;
+
+    margin-left: 50px;
+    margin-top: 50px;
+    border-top-left-radius: 20px;
+}
+
+.handpage > img {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+
+    margin-left: calc(100vw - 115px);
+    margin-top: 8px;
+
+    border-radius: 50%;
+
+    
+}
+
+.handpage-inner {
+    margin: 30px;
+}
+
+#pdfContainer {
+    display: flex;
+    flex-wrap: wrap;
+
+    overflow-y: scroll;
+    height:calc(100vh - 220px);
+}
+
+#pdfContainer > div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+
+    
+}
+
+canvas {
+    width: 200px;
+    height: 320px;
+    margin-right: 10px;
+
+    border-style: dotted;
+
+    cursor: pointer;
+}
+
+#new-project {
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    width: 300px;
+    height: 60px;
+    padding: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(37 99 235);
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    outline: 0;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}

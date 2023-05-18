@@ -5,20 +5,132 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link href="https://fonts.cdnfonts.com/css/hk-groteks?display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link
+            href="https://fonts.cdnfonts.com/css/hk-groteks?display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.min.js"
+            integrity="sha512-KEoL9wKXt/fhlAfN+ZNXf3pI48aaQE9Qd5fihHY+5n5XLTSnyGJ0uKgUj//V6KAcjFwzAbCYYPKeGlFES/H5Ng=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <link rel="stylesheet" href="/styles/resumes.css" />
     </head>
     <body>
+        <div class="back">
+            <div class="handpage">
+                <img id="userprofile" src="" alt="" />
+                <div class="handpage-inner">
+                    <h3 style="margin-left: 10px">Resumes</h3>
+                    <button id="new-project">Create a New Project</button>
+                    <div id="pdfContainer"></div>
+                </div>
+            </div>
+        </div>
 
         <script>
-            fetch("/api/json2html")
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                    html2pdf().from(data.html).save("output.pdf");
-                });
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(";").shift();
+            }
+
+            function fetchData() {
+                fetch("/api/getprofile?userid=" + getCookie("userid"))
+                    .then((response) => response.json())
+                    .then((data) => {
+                        $("#userprofile").attr("src", data.profileUrl);
+                    });
+
+                fetch("/api/getresumes?userid=" + getCookie("userid"))
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+
+                        data.resumeList.forEach((json) => {
+                            const projectName = json.projectName;
+                            const projectId = json.projectId;
+                            console.log(json);
+
+                            fetch(
+                                `/api/json2pdf?json=${encodeURIComponent(
+                                    JSON.stringify(json.json)
+                                )}`
+                            )
+                                .then((response) => response.blob())
+                                .then((result) => {
+                                    // Process the response from the server
+
+                                    const pdfUrl = URL.createObjectURL(result);
+                                    console.log(result, pdfUrl);
+
+                                    const container =
+                                        document.getElementById("pdfContainer");
+                                    pdfjsLib
+                                        .getDocument(pdfUrl)
+                                        .promise.then((pdf) => {
+                                            pdf.getPage(1).then((page) => {
+                                                const viewport =
+                                                    page.getViewport({
+                                                        scale: 1,
+                                                    });
+
+                                                const divider =
+                                                    document.createElement(
+                                                        "div"
+                                                    );
+
+                                                const href =
+                                                    document.createElement("a");
+                                                href.href =
+                                                    "/app?projectid=" +
+                                                    projectId;
+                                                const canvas =
+                                                    document.createElement(
+                                                        "canvas"
+                                                    );
+                                                const context =
+                                                    canvas.getContext("2d");
+                                                canvas.height = viewport.height;
+                                                canvas.width = viewport.width;
+
+                                                const label =
+                                                    document.createElement("a");
+                                                label.href =
+                                                    "/app?projectid=" +
+                                                    projectId;
+                                                label.innerText = projectName;
+
+                                                href.appendChild(canvas);
+                                                divider.appendChild(href);
+                                                divider.appendChild(label);
+                                                container.appendChild(divider);
+
+                                                page.render({
+                                                    canvasContext: context,
+                                                    viewport: viewport,
+                                                });
+                                            });
+                                        });
+                                })
+                                .catch((error) => {
+                                    // Handle any errors that occurred during the request
+                                    console.error("Error:", error);
+                                });
+                        });
+                    });
+            }
+
+            fetchData();
         </script>
     </body>
 </html>
