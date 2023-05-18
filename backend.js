@@ -1,6 +1,10 @@
 const app = require('./main.js');
 const users = require('./private/users.json');
+const resumes = require('./private/resumes.json');
 var passwordValidator = require('password-validator');
+const getBrowserInstance = require('./puppeteerInstance');
+const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
 const {
   isAnyUndefined,
   isValueExists,
@@ -9,6 +13,9 @@ const {
   isValidEmail
 
 } = require('./utils.js');
+const {
+  json2html_teplate_standart
+} = require('./template_standart.js');
 
 var schema = new passwordValidator();
 schema
@@ -21,6 +28,7 @@ schema
 
 
 function setupRoutes() {
+  getBrowserInstance()
 
   // --------------------------------------------------------------------------
   // --------------------------------------------------------------------------
@@ -33,16 +41,23 @@ function setupRoutes() {
   });
   app.get('/signin', (req, res) => {
     if (req.cookies.userid) {
-      res.redirect('/app');
+      res.redirect('/resumes');
     }
     else res.sendFile(__dirname + '/views/signin.html');
   });
 
   app.get('/signup', (req, res) => {
     if (req.cookies.userid) {
-      res.redirect('/app');
+      res.redirect('/resumes');
     }
     res.sendFile(__dirname + '/views/signup.html');
+  });
+
+  app.get('/resumes', (req, res) => {
+    if (!req.cookies.userid) {
+      res.redirect('/signin');
+    }
+    res.sendFile(__dirname + '/views/resumes.html');
   });
 
   // --------------------------------------------------------------------------
@@ -129,6 +144,74 @@ function setupRoutes() {
 
     return res.send({ code: 0, userid: userid })
   });
+
+  // get resumes by userid
+  // 0 -> success
+  // -1 -> userid not found
+  app.get('/api/getresumes', (req, res) => {
+    const userid = req.query.userid;
+
+    if (!userid) {
+      return res.send({ code: -1 })
+    }
+
+    const resumeList = resumes.resumes.find(resumelist => resumelist.userid === userid);
+    if (!resumeList) {
+      return res.send({ code: -1 })
+    }
+
+    return res.send({ code: 0, resumeList: resumeList.storedResumes })
+  });
+
+  app.get('/api/json2pdf', (req, res) => {
+    // let html = json2htkml_teplate_standart(resumes.resumes.find(resumelist => resumelist.userid === '6045045fc93ee43cdf8736a54b62039a9fbc79e9').storedResumes[0]);
+    let html = json2html_teplate_standart(JSON.parse(decodeURIComponent(req.query.json)))
+
+    let uuid = uuidv4();
+    const filePath = __dirname + '/private/temp_previews/' + uuid + '.pdf';
+
+    getBrowserInstance()
+      .then(browser => browser.newPage())
+      .then(page => page.setContent(html).then(() => page))
+      .then(page => page.pdf({ path: './private/temp_previews/' + uuid + '.pdf', format: 'A4' }))
+      .then(() => {
+        // PDF successfully created
+        // Send the response with the generated UUID
+        res.sendFile(filePath, (error) => {
+          if (error) {
+            console.error('Error sending file:', error);
+          } else {
+            // Delete the file after sending it
+            fs.unlink(filePath, (error) => {
+              if (error) {
+                console.error('Error deleting file:', error);
+              } 
+            });
+          }
+        });
+      })
+      .catch((error) => {
+        // Handle error
+        console.log(error);
+        res.send({ code: -1 });
+      });
+  });
+
+  app.get('/api/getprofile', (req, res) => {
+    const userid = req.query.userid;
+
+    if (!userid) {
+      return res.send({ code: -1 })
+    }
+
+    const user = users.users.find(usr => usr.userid === userid);
+    if (!user) {
+      return res.send({ code: -1 })
+    }
+
+    return res.send({ code: 0, profileUrl: user.profileUrl })
+  });
+
 }
 
 module.exports = setupRoutes;

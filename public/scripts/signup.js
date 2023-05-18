@@ -65,7 +65,7 @@ function signup() {
                 }, 1000);
             } else if (nd.code === 0) {
                 document.cookie = "userid=" + nd.userid;
-                window.location.replace('/app')
+                window.location.replace('/resumes')
             }
         });
 } 
