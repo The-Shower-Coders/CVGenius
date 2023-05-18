@@ -14,7 +14,7 @@ const {
 
 } = require('./utils.js');
 const {
-  json2html_teplate_standart
+  json2html_template_standart
 } = require('./template_standart.js');
 
 var schema = new passwordValidator();
@@ -163,9 +163,28 @@ function setupRoutes() {
     return res.send({ code: 0, resumeList: resumeList.storedResumes })
   });
 
+  app.get('/api/getprofile', (req, res) => {
+    const userid = req.query.userid;
+
+    if (!userid) {
+      return res.send({ code: -1 })
+    }
+
+    const user = users.users.find(usr => usr.userid === userid);
+    if (!user) {
+      return res.send({ code: -1 })
+    }
+
+    return res.send({ code: 0, profileUrl: user.profileUrl })
+  });
+
   app.get('/api/json2pdf', (req, res) => {
-    // let html = json2htkml_teplate_standart(resumes.resumes.find(resumelist => resumelist.userid === '6045045fc93ee43cdf8736a54b62039a9fbc79e9').storedResumes[0]);
-    let html = json2html_teplate_standart(JSON.parse(decodeURIComponent(req.query.json)))
+    
+    if (!req.query.json) {
+      res.send({ code: -1 });
+    }
+    
+    let html = json2html_template_standart(JSON.parse(decodeURIComponent(req.query.json)))
 
     let uuid = uuidv4();
     const filePath = __dirname + '/private/temp_previews/' + uuid + '.pdf';
@@ -196,22 +215,6 @@ function setupRoutes() {
         res.send({ code: -1 });
       });
   });
-
-  app.get('/api/getprofile', (req, res) => {
-    const userid = req.query.userid;
-
-    if (!userid) {
-      return res.send({ code: -1 })
-    }
-
-    const user = users.users.find(usr => usr.userid === userid);
-    if (!user) {
-      return res.send({ code: -1 })
-    }
-
-    return res.send({ code: 0, profileUrl: user.profileUrl })
-  });
-
 }
 
 module.exports = setupRoutes;
