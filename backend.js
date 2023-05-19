@@ -39,6 +39,11 @@ function setupRoutes() {
   app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
   });
+
+  app.get('/get', (req, res) => {
+    res.sendFile(__dirname + '/private/temp_previews/24a1727a-ba6b-4e85-a3b6-e3feca8c80f1.pdf');
+  });
+  
   app.get('/signin', (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
@@ -58,6 +63,13 @@ function setupRoutes() {
       res.redirect('/signin');
     }
     res.sendFile(__dirname + '/views/resumes.html');
+  });
+
+  app.get('/app', (req, res) => {
+    if (!req.cookies.userid) {
+      res.redirect('/signin');
+    }
+    res.sendFile(__dirname + '/views/app.html');
   });
 
   // --------------------------------------------------------------------------
@@ -183,7 +195,6 @@ function setupRoutes() {
     if (!req.query.json) {
       res.send({ code: -1 });
     }
-    
     let html = json2html_template_standart(JSON.parse(decodeURIComponent(req.query.json)))
 
     let uuid = uuidv4();

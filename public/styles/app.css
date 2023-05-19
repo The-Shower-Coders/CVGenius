@@ -1,0 +1,126 @@
+body {
+    margin: 0px;
+    background-color: #242729;
+}
+
+.abs {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+}
+
+.none {
+    display: none !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.max-height {
+    height: 100vh;
+}
+
+.container-bg {
+    display: flex;
+    height: 100vh;
+}
+
+.left {
+    width: 100%;
+    min-width: 200px;
+    max-width: 350px;
+    height: 100vh;
+    background-color: aliceblue;
+}
+
+.right {
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        #f17c58,
+        #e94584,
+        #24aadb,
+        #27dbb1,
+        #ffdc18,
+        #ff3706
+    );
+    background-size: 600% 100%;
+    animation: gradient 16s linear infinite;
+    animation-direction: alternate;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+#pdf > canvas {
+    height: 90vh;
+    width: 100%;
+    min-width: 485px;
+}
+
+.collapsible-body {
+    padding-right: 0px !important;
+}
+
+input, .rm {
+    width: calc(100% - 1rem) !important;
+}
+
+.f-right {
+    display: flex;
+    justify-content: end;
+    position: absolute;
+}
+
+#download {
+    backdrop-filter: grayscale(0.3) opacity(0.8);
+    border-style: double;
+    font-family: "Sans", sans-serif;
+    margin-top: 0px;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 7px;
+    width: 160px;
+    height: 25px;
+    background-color: transparent;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    color: white;
+    margin-left: calc(100% - 160px);
+    margin-bottom: 10px;
+}
+
+#download:hover {
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        #f17c58,
+        #e94584,
+        #24aadb,
+        #27dbb1,
+        #ffdc18,
+        #ff3706
+    );
+    background-size: 600% 100%;
+    animation: gradient 16s linear infinite;
+    animation-direction: alternate;
+}
