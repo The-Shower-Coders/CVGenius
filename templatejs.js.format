@@ -50,16 +50,22 @@ Object.keys(json).forEach(function (k) {
         })
     }
     else if (k === 'phone') {
-        $('#internals').append(createPhone(json[k]));
-        injectProperties('#phone', json[k])
+        if (json[k].value.length !== 0) {
+            $('#internals').append(createPhone(json[k]));
+            injectProperties('#phone', json[k])
+        }
     }
     else if (k === 'email') {
-        $('#internals').append(createEmail(json[k]));
-        injectProperties('#email', json[k])
+        if (json[k].value.length !== 0) {
+            $('#internals').append(createEmail(json[k]));
+            injectProperties('#email', json[k])
+        }
     }
     else if (k === 'location') {
-        $('#internals').append(createLocation(json[k]));
-        injectProperties('#location', json[k])
+        if (json[k].value.length !== 0) {
+            $('#internals').append(createLocation(json[k]));
+            injectProperties('#location', json[k])
+        }
     }
     else {
         $('#' + k).html(json[k].value);

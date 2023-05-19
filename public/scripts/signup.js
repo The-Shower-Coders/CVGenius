@@ -64,11 +64,21 @@ function signup() {
                     $('#username').removeClass('shake')
                 }, 1000);
             } else if (nd.code === 0) {
-                document.cookie = "userid=" + nd.userid;
+                setCookie('userid', nd.userid, 365)
                 window.location.replace('/resumes')
             }
         });
 } 
+
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
 
 function showError(message) {
     $('.toast-body').html(message);

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.cdnfonts.com/css/hk-groteks" rel="stylesheet">
+        <link rel="stylesheet" href="styles/app.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.11/pdfobject.min.js"
+            integrity="sha512-Ei1WlhMCjToeHGX4Dc2GvcnQqXiLNoNJA7BCSpKNd+Epg+3zxSpllzvub5lTrIOZs+CqyFjzkOiW7JadQ8qdog=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.11/pdfobject.min.js"
+            integrity="sha512-Ei1WlhMCjToeHGX4Dc2GvcnQqXiLNoNJA7BCSpKNd+Epg+3zxSpllzvub5lTrIOZs+CqyFjzkOiW7JadQ8qdog=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js" integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="scripts/app.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="abs none">
+            <div class="vertical-center popup">
+                
+            </div>
+        </div>
+        <div class="container-bg">
+            <div class="left">
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header">Personal Informations</div>
+                        <div class="collapsible-body">
+                            <ul class="collapsible">
+                                <li>
+                                    <div class="collapsible-header">Name</div>
+                                    <div class="collapsible-body">
+                                        <input type="text" placeholder="Your name" target="name.value" value="Your Name">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header">Job</div>
+                                    <div class="collapsible-body">
+                                        <input type="text" placeholder="Your job" target="job.value" value="Your job">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header">Phone Number</div>
+                                    <div class="collapsible-body">
+                                        <input type="text" placeholder="Your Phone Number" target="phone.value" value="0123 456 78 90">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header">Email</div>
+                                    <div class="collapsible-body">
+                                        <input type="text" placeholder="Your Email" target="email.value" value="user@example.com">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header">Location</div>
+                                    <div class="collapsible-body">
+                                        <input type="text" placeholder="Your Location" target="location.value" value="World">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header">External Links</div>
+                                    <div class="collapsible-body">
+                                        <ul id="list-of-external-links" target="external-links">
+                                        </ul>
+                                        <button class="add-btn" onclick="ShowAddNewExternalLinks()">Add</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">Section 2</div>
+                        <div class="collapsible-body">
+                            <p>Content for section 2.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="center max-height">
+                    <div class="vertical-center">
+                        <div id="download" onclick="download()">
+                            Download as PDF
+                        </div>
+                        <div id="pdf">
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            
+        </script>
+    </body>
+</html>
