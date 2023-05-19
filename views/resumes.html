@@ -48,6 +48,7 @@
                 fetch("/api/getprofile?userid=" + getCookie("userid"))
                     .then((response) => response.json())
                     .then((data) => {
+                        console.log(data.profileUrl)
                         $("#userprofile").attr("src", data.profileUrl);
                     });
 
