@@ -101,3 +101,24 @@ canvas {
     font-weight: 500;
     margin-bottom: 20px;
 }
+
+.options {
+    position: absolute;
+}
+
+.logout {
+    padding: 10px;
+    width: 60px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: #E8E8E8;
+    margin-top: 70px;
+    margin-left: calc(100vw - 140px);
+    text-align: center;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background-color: red;
+}

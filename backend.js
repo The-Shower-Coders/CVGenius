@@ -1,6 +1,6 @@
 const app = require('./main.js');
-const users = require('./private/users.json');
-const resumes = require('./private/resumes.json');
+let users = require('./private/users.json');
+let resumes = require('./private/resumes.json');
 var passwordValidator = require('password-validator');
 const getBrowserInstance = require('./puppeteerInstance');
 const { spawn } = require('child_process');
@@ -41,13 +41,17 @@ function setupRoutes() {
   // --------------------------------------------------------------------------
 
   app.get('/', (req, res) => {
+    if (req.cookies.userid) {
+      res.redirect('/resumes');
+    }
     res.sendFile(__dirname + '/views/index.html');
   });
+
   app.get('/pricing', (req, res) => {
+    if (req.cookies.userid) {
+      res.redirect('/resumes');
+    }
     res.sendFile(__dirname + '/views/pricing.html');
-  });
-  app.get('/get', (req, res) => {
-    res.sendFile(__dirname + '/private/temp_previews/24a1727a-ba6b-4e85-a3b6-e3feca8c80f1.pdf');
   });
 
   app.get('/signin', (req, res) => {
@@ -179,6 +183,48 @@ function setupRoutes() {
     }
 
     return res.send({ code: 0, resumeList: resumeList.storedResumes })
+  });
+
+  app.get('/api/getproject', (req, res) => {
+    const projectid = req.query.projectid;
+
+    if (!projectid) {
+      return res.send({ code: -1 })
+    }
+
+    let returnData;
+    resumes.resumes.forEach(resumelist => {
+      resumelist.storedResumes.forEach(resume => {
+        if (resume.projectId == projectid) {
+          returnData = resume.json;
+        }
+      })
+    })
+    if (!returnData) {
+      return res.send({ code: -1 })
+    }
+
+    return res.send({ code: 0, data: returnData })
+  });
+
+  app.get('/api/setproject', (req, res) => {
+    const projectid = req.query.projectid;
+    const json = req.query.json;
+
+    if (!projectid) {
+      return res.send({ code: -1 })
+    }
+
+    resumes.resumes.forEach(resumelist => {
+      resumelist.storedResumes.forEach(resume => {
+        if (resume.projectId == projectid) {
+          resume.json = JSON.parse(json)
+        }
+      })
+    })
+
+    updateJSON('./private/resumes.json', resumes)
+    return res.send({ code: 0 })
   });
 
   app.get('/api/getprofile', (req, res) => {

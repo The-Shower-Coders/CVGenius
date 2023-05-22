@@ -28,7 +28,10 @@
     <body>
         <div class="back">
             <div class="handpage">
-                <img id="userprofile"/>
+                <div class="options">
+                    <div class="logout">Logout</div>
+                </div>
+                <img id="userprofile" />
                 <div class="handpage-inner">
                     <h3 style="margin-left: 10px">Resumes</h3>
                     <button id="new-project">Create a New Project</button>
@@ -38,6 +41,16 @@
         </div>
 
         <script>
+            $(".logout").click(() => {
+                delete_cookie('userid')
+                window.location.replace('/signin')
+            });
+
+            function delete_cookie(name) {
+                document.cookie =
+                    name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+            }
+
             function getCookie(name) {
                 const value = `; ${document.cookie}`;
                 const parts = value.split(`; ${name}=`);
@@ -48,7 +61,7 @@
                 fetch("/api/getprofile?userid=" + getCookie("userid"))
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log(data.profileUrl)
+                        console.log(data.profileUrl);
                         $("#userprofile").attr("src", data.profileUrl);
                     });
 
