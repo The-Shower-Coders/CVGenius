@@ -56,12 +56,9 @@ body {
   text-align: center;
   display: block;
   font-size: 2em;
-  margin-block-start: 0.67em;
-  margin-block-end: 0.67em;
-  margin-inline-start: 12px;
-  margin-inline-end: 0px;
-  font-weight: bold;
-  margin-top: 7%;
+  padding: 40px;
+  height: 30px;
+  margin-top: 102px;
 }
 
 h2 {
@@ -157,7 +154,23 @@ h2 {
   text-decoration: none;
   border-radius: 15px;
 }
+.pricing-card0 .button:hover{
+  z-index:4;
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);  
+    -moz-transform: scale(1.5);
+    transform: scale(1.1);
+    color: #072b39;
+}
 
+.pricing-card .button:hover{
+  z-index:4;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);  
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+    color: #072b39;
+}
 .pricing-card {
   width: 480px;
   height: 660px;
@@ -375,4 +388,3 @@ a.logo {
 }
 
 /*! header end  */
-
