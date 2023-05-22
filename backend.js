@@ -1,6 +1,13 @@
 const app = require('./main.js');
 const users = require('./private/users.json');
+const resumes = require('./private/resumes.json');
 var passwordValidator = require('password-validator');
+const getBrowserInstance = require('./puppeteerInstance');
+const { spawn } = require('child_process');
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec);
+const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
 const {
   isAnyUndefined,
   isValueExists,
@@ -9,6 +16,11 @@ const {
   isValidEmail
 
 } = require('./utils.js');
+const {
+  json2html_template_standart
+} = require('./template_standart.js');
+
+getBrowserInstance()
 
 var schema = new passwordValidator();
 schema
@@ -31,18 +43,39 @@ function setupRoutes() {
   app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
   });
+  app.get('/pricing', (req, res) => {
+    res.sendFile(__dirname + '/views/pricing.html');
+  });
+  app.get('/get', (req, res) => {
+    res.sendFile(__dirname + '/private/temp_previews/24a1727a-ba6b-4e85-a3b6-e3feca8c80f1.pdf');
+  });
+
   app.get('/signin', (req, res) => {
     if (req.cookies.userid) {
-      res.redirect('/app');
+      res.redirect('/resumes');
     }
     else res.sendFile(__dirname + '/views/signin.html');
   });
 
   app.get('/signup', (req, res) => {
     if (req.cookies.userid) {
-      res.redirect('/app');
+      res.redirect('/resumes');
     }
     res.sendFile(__dirname + '/views/signup.html');
+  });
+
+  app.get('/resumes', (req, res) => {
+    if (!req.cookies.userid) {
+      res.redirect('/signin');
+    }
+    res.sendFile(__dirname + '/views/resumes.html');
+  });
+
+  app.get('/app', (req, res) => {
+    if (!req.cookies.userid) {
+      res.redirect('/signin');
+    }
+    res.sendFile(__dirname + '/views/app.html');
   });
 
   // --------------------------------------------------------------------------
@@ -128,6 +161,91 @@ function setupRoutes() {
     }
 
     return res.send({ code: 0, userid: userid })
+  });
+
+  // get resumes by userid
+  // 0 -> success
+  // -1 -> userid not found
+  app.get('/api/getresumes', (req, res) => {
+    const userid = req.query.userid;
+
+    if (!userid) {
+      return res.send({ code: -1 })
+    }
+
+    const resumeList = resumes.resumes.find(resumelist => resumelist.userid === userid);
+    if (!resumeList) {
+      return res.send({ code: -1 })
+    }
+
+    return res.send({ code: 0, resumeList: resumeList.storedResumes })
+  });
+
+  app.get('/api/getprofile', (req, res) => {
+    const userid = req.query.userid;
+
+    if (!userid) {
+      return res.send({ code: -1 })
+    }
+
+    const user = users.users.find(usr => usr.userid === userid);
+    if (!user) {
+      return res.send({ code: -1 })
+    }
+
+    return res.send({ code: 0, profileUrl: user.profileUrl })
+  });
+
+  app.get('/api/json2pdf', (req, res) => {
+
+    if (!req.query.json) {
+      res.send({ code: -1 });
+    }
+    let html = json2html_template_standart(JSON.parse(decodeURIComponent(req.query.json)))
+
+    let uuid = uuidv4();
+    const filePath = __dirname + '/private/temp_previews/' + uuid + '.pdf';
+
+    getBrowserInstance()
+      .then(browser => browser.newPage())
+      .then(page => page.setContent(html).then(() => page))
+      .then(page => page.pdf({ path: './private/temp_previews/' + uuid + '.pdf', format: 'A4' }))
+      .then(() => {
+        // PDF successfully created
+        // Send the response with the generated UUID
+        res.sendFile(filePath, (error) => {
+          if (error) {
+            console.error('Error sending file:', error);
+          } else {
+            // Delete the file after sending it
+            fs.unlink(filePath, (error) => {
+              if (error) {
+                console.error('Error deleting file:', error);
+              }
+            });
+          }
+        });
+      })
+      .catch((error) => {
+        // Handle error
+        console.log(error);
+        res.send({ code: -1 });
+      });
+  });
+
+  app.get('/api/askbard', async (req, res) => {
+    if (!req.query.q) {
+      res.send("query not specified. {err: -1}");
+      return;
+    }
+  
+    try {
+      const { stdout } = await exec(`python bardcon.py "${req.query.q.replaceAll('"', '\"')}"`);
+      res.send(stdout);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
   });
 }
 

@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
+
+:root {
+  --main-color: #504b4b;
+  --black-color: #0e0e0e;
+  --border: 0.1rem solid rgba(7, 7, 7, 0.4);
+}
+
+* {
+  font-family: "Roboto Mono", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: none;
+  transition: 0.2s ease;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+
+}
+
+#body-bg {
+  background: linear-gradient(45deg,
+      #f17c58,
+      #e94584,
+      #24aadb,
+      #2cb494,
+      #ffdc18,
+      #ff3706);
+  background-size: 600% 100%;
+  animation: gradient 3s linear infinite;
+  animation-direction: alternate;
+  z-index: -999;
+  width: 100%;
+  height: 150vh;
+  position: absolute;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.pricing-title {
+  text-align: center;
+  display: block;
+  font-size: 2em;
+  padding: 40px;
+  height: 30px;
+  margin-top: 102px;
+}
+
+h2 {
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  margin: 0;
+  padding: 0 0 0px;
+  line-height: 28px;
+}
+
+.back {
+  position: absolute;
+  inset: 0;
+
+}
+
+.pricing-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 600% 100%;
+  animation: gradient 3s linear infinite;
+  animation-direction: alternate;
+
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 100%;
+  }
+}
+
+.pricing-card0 {
+  width: 480px;
+  height: 660px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  text-align: center;
+  background-color: #f9f9f9;
+  margin: 30px;
+}
+
+.pricing-card0 {
+  margin: 50px;
+  background-color: #fff;
+}
+
+.pricing-card0 h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.pricing-card0:hover
+{
+    z-index:4;
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);  
+    -moz-transform: scale(1.5);
+    transform: scale(1.1);
+}
+.pricing-card:hover
+{
+    z-index:4;
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);  
+    -moz-transform: scale(1.5);
+    transform: scale(1.1);
+}
+
+.pricing-card0 p {
+  font-size: 18.2px;
+  color: #777;
+}
+
+.pricing-card0 .price {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px 0;
+}
+
+.pricing-card0 .button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: cadetblue;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 15px;
+}
+.pricing-card0 .button:hover{
+  z-index:4;
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);  
+    -moz-transform: scale(1.5);
+    transform: scale(1.1);
+    color: #072b39;
+}
+
+.pricing-card .button:hover{
+  z-index:4;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);  
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+    color: #072b39;
+}
+.pricing-card {
+  width: 480px;
+  height: 660px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  text-align: center;
+  background-color: #f9f9f9;
+  margin: 50px;
+}
+
+.pricing-card h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.pricing-card p {
+  font-size: 18.2px;
+  color: #777;
+}
+
+.pricing-card .price {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px 0;
+}
+
+.pricing-card .button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: cadetblue;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 15px;
+
+}
+
+.pricing-container .plan {
+  font-size: 3rem;
+  padding: 20px 20px;
+
+}
+
+
+
+.header-top {
+  padding-top: 2rem;
+}
+
+* {
+  font-family: "Roboto Mono", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: none;
+  transition: 0.2s ease;
+}
+
+/*! header start  */
+a {
+  font-size: 1.6rem;
+}
+
+header .logo p {
+  font-size: 3rem;
+  color: black;
+}
+
+a.logo {
+  font-size: 2rem;
+}
+
+.fa-solid,
+.fas {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: xx-large;
+}
+
+.header .search-form {
+  position: absolute;
+  top: 115%;
+  right: 7%;
+  background-color: #fff;
+  width: 50rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 3rem;
+  box-shadow: 0px 0px 25px 2px rgb(0 0 0 / 75%);
+  transform: scaleY(0);
+}
+
+.header .search-form.active {
+  transform: scaleY(1);
+}
+
+.header .search-form i {
+  cursor: pointer;
+  font-size: 2.2rem;
+  margin-right: 1.5rem;
+  color: var(--black-color);
+}
+
+.header .search-form input {
+  width: 100%;
+}
+
+.header .logo img {
+  height: 10rem;
+}
+
+.header-top {
+  padding-top: 2rem;
+}
+
+.header {
+  height: 70px;
+  background-color: #fff;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.3%;
+  margin-bottom: 2rem;
+  margin-left: 7%;
+  margin-right: 7%;
+  border-radius: 30rem;
+  box-shadow: 0px 0px 17px -2px rgba(0, 0, 0, 0.75);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header .navbar a {
+  margin: 0 1rem;
+  font-size: 1.3rem;
+  color: var(--black-color);
+  border-bottom: 0.1rem solid transparent;
+}
+
+.header .navbar .active,
+.header .navbar a:hover {
+  border-color: var(--main-color);
+  padding-bottom: 1rem;
+
+}
+
+.header .buttons button {
+  cursor: pointer;
+  font-size: 2.5rem;
+  margin-left: 2rem;
+  background-color: transparent;
+  color: var(--black-color);
+}
+
+.header .cart-items-container {
+  position: absolute;
+  top: 60%;
+  height: calc(100vh - 9rem);
+  width: 35rem;
+  background-color: #fff;
+  box-shadow: 0px 20px 14px 0px rgb(0 0 0 / 75%);
+  right: -100%;
+}
+
+.header .cart-items-container.active {
+  right: 3rem;
+}
+
+.header .cart-items-container .cart-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.header .cart-items-container .cart-item:hover {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.header .cart-items-container .cart-item .fa-times {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--black-color);
+}
+
+
+.header .cvgenius {
+  font-size: 1.3em;
+
+}
+
+.header .cart-items-container .cart-item .content .price {
+  font-size: 1.5rem;
+  color: var(--black-color);
+}
+
+.header .cart-items-container .btn {
+  width: 100%;
+  text-align: center;
+  border-radius: unset;
+}
+
+.header #menu-btn {
+  display: none;
+}
+
+/*! header end  */
