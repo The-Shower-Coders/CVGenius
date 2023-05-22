@@ -1,0 +1,29 @@
+{
+    "catagories": [
+        {
+            "title": "Personal",
+            "items": [
+                {
+                    "title": "Name",
+                    "isSignleInput": true,
+                    "type": "string",
+                    "target": "name.value"
+                },
+                {
+                    "title": "External Links",
+                    "isSignleInput": false,
+                    "type": [
+                        {
+                            "type": "string",
+                            "target": "fontawesomeIcon"
+                        },
+                        {
+                            "type": "string",
+                            "target": "value"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -3,6 +3,9 @@ const users = require('./private/users.json');
 const resumes = require('./private/resumes.json');
 var passwordValidator = require('password-validator');
 const getBrowserInstance = require('./puppeteerInstance');
+const { spawn } = require('child_process');
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec);
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const {
@@ -17,6 +20,8 @@ const {
   json2html_template_standart
 } = require('./template_standart.js');
 
+getBrowserInstance()
+
 var schema = new passwordValidator();
 schema
   .is().min(8)                                    // Minimum length 8
@@ -28,7 +33,6 @@ schema
 
 
 function setupRoutes() {
-  getBrowserInstance()
 
   // --------------------------------------------------------------------------
   // --------------------------------------------------------------------------
@@ -45,7 +49,7 @@ function setupRoutes() {
   app.get('/get', (req, res) => {
     res.sendFile(__dirname + '/private/temp_previews/24a1727a-ba6b-4e85-a3b6-e3feca8c80f1.pdf');
   });
-  
+
   app.get('/signin', (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
@@ -193,7 +197,7 @@ function setupRoutes() {
   });
 
   app.get('/api/json2pdf', (req, res) => {
-    
+
     if (!req.query.json) {
       res.send({ code: -1 });
     }
@@ -217,7 +221,7 @@ function setupRoutes() {
             fs.unlink(filePath, (error) => {
               if (error) {
                 console.error('Error deleting file:', error);
-              } 
+              }
             });
           }
         });
@@ -227,6 +231,21 @@ function setupRoutes() {
         console.log(error);
         res.send({ code: -1 });
       });
+  });
+
+  app.get('/api/askbard', async (req, res) => {
+    if (!req.query.q) {
+      res.send("query not specified. {err: -1}");
+      return;
+    }
+  
+    try {
+      const { stdout } = await exec(`python bardcon.py "${req.query.q.replaceAll('"', '\"')}"`);
+      res.send(stdout);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
   });
 }
 
