@@ -34,7 +34,7 @@ body {
       #ffdc18,
       #ff3706);
   background-size: 600% 100%;
-  animation: gradient 3s linear infinite;
+  animation: gradient 24s linear infinite;
   animation-direction: alternate;
   z-index: -999;
   width: 100%;
