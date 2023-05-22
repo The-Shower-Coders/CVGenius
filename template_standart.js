@@ -48,7 +48,7 @@ function json2html_template_standart(json) {
             </div>
             <script>
             let json = JSON.parse(${'`'}${JSON.stringify(json)}${'`'})
-            ${fs.readFileSync('./templatejs.js.format', 'utf8')}
+            ${fs.readFileSync('./templatejs.js', 'utf8')}
             </script>
         </body>
     </html>    

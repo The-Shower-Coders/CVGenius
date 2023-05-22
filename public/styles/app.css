@@ -41,6 +41,7 @@ body {
     max-width: 350px;
     height: 100vh;
     background-color: aliceblue;
+    overflow: scroll;
 }
 
 .right {
@@ -74,6 +75,7 @@ body {
     height: 90vh;
     width: 100%;
     min-width: 485px;
+    padding: 10px;
 }
 
 .collapsible-body {
@@ -82,12 +84,6 @@ body {
 
 input, .rm {
     width: calc(100% - 1rem) !important;
-}
-
-.f-right {
-    display: flex;
-    justify-content: end;
-    position: absolute;
 }
 
 #download {
@@ -123,4 +119,34 @@ input, .rm {
     background-size: 600% 100%;
     animation: gradient 16s linear infinite;
     animation-direction: alternate;
+}
+
+.main-collapsible {
+    margin-top: 0px !important;
+}
+
+.min-width {
+    min-width: 500px;
+}
+
+.tns-outer [aria-controls], .tns-outer [data-action] {
+    cursor: pointer;
+    background-color: white;
+    border-width: 1px;
+    border-radius: 4px;
+    margin-right: 2px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-weight: normal;
+}
+
+.flex-max {
+    display: flex;
+}
+
+.flex-max > * {
+    width: 100%;
+}
+
+.mr-1rem {
+    margin-right: 1rem !important;
 }
