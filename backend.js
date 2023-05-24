@@ -17,7 +17,8 @@ const {
 
 } = require('./utils.js');
 const {
-  json2html_template_standart
+  json2html_template_standart,
+  getTemplate
 } = require('./template_standart.js');
 
 getBrowserInstance()
@@ -43,6 +44,7 @@ function setupRoutes() {
   app.get('/', (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
+      return
     }
     res.sendFile(__dirname + '/views/index.html');
   });
@@ -50,6 +52,7 @@ function setupRoutes() {
   app.get('/pricing', (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
+      return
     }
     res.sendFile(__dirname + '/views/pricing.html');
   });
@@ -57,6 +60,7 @@ function setupRoutes() {
   app.get('/signin', (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
+      return
     }
     else res.sendFile(__dirname + '/views/signin.html');
   });
@@ -64,6 +68,7 @@ function setupRoutes() {
   app.get('/signup', (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
+      return
     }
     res.sendFile(__dirname + '/views/signup.html');
   });
@@ -71,6 +76,7 @@ function setupRoutes() {
   app.get('/resumes', (req, res) => {
     if (!req.cookies.userid) {
       res.redirect('/signin');
+      return
     }
     res.sendFile(__dirname + '/views/resumes.html');
   });
@@ -78,6 +84,7 @@ function setupRoutes() {
   app.get('/app', (req, res) => {
     if (!req.cookies.userid) {
       res.redirect('/signin');
+      return
     }
     res.sendFile(__dirname + '/views/app.html');
   });
@@ -127,7 +134,12 @@ function setupRoutes() {
     // create account
     const user = newUser(name, pass, mail)
     users.users.push(user);
+    resumes.resumes.push({
+      userid: user.userid,
+      storedResumes: []
+    })
     updateJSON('./private/users.json', users)
+    updateJSON('./private/resumes.json', resumes)
     return res.send({ code: 0, userid: user.userid })
   });
 
@@ -170,6 +182,7 @@ function setupRoutes() {
   // get resumes by userid
   // 0 -> success
   // -1 -> userid not found
+  // -2 -> user not found
   app.get('/api/getresumes', (req, res) => {
     const userid = req.query.userid;
 
@@ -179,7 +192,7 @@ function setupRoutes() {
 
     const resumeList = resumes.resumes.find(resumelist => resumelist.userid === userid);
     if (!resumeList) {
-      return res.send({ code: -1 })
+      return res.send({ code: -2 })
     }
 
     return res.send({ code: 0, resumeList: resumeList.storedResumes })
@@ -293,6 +306,32 @@ function setupRoutes() {
       res.status(500).send('Internal Server Error');
     }
   });
+
+  app.get('/api/create', async (req, res) => {
+    const 
+      userid = req.query.userid,
+      projectname = req.query.projectname,
+      template = req.query.template;
+
+    // check undefined parameters
+    if (isAnyUndefined(userid, projectname, template)) {
+      return res.send({ code: -1 })
+    }
+
+    let uuid = uuidv4();
+    resumes.resumes.forEach(resumelist => {
+      if (resumelist.userid === userid) {
+        resumelist.storedResumes.push({
+          projectName: projectname,
+          projectId: uuid,
+          json: getTemplate()
+        })
+      }
+    })
+
+    updateJSON('./private/resumes.json', resumes)
+    return res.send({ code: 0, projectId: uuid })
+  })
 }
 
 module.exports = setupRoutes;

@@ -6,7 +6,32 @@ function download() {
         })
 }
 
+function updateJsonValue(target, value) {
+    let segments_ = target.split('.');
+    let nestedObject_ = json;
+    for (let i = 0; i < segments_.length - 1; i++) {
+        if (!nestedObject_[segments_[i]]) {
+            nestedObject_[segments_[i]] = {};
+        }
+        nestedObject_ = nestedObject_[segments_[i]];
+    }
+    nestedObject_[segments_[segments_.length - 1]] = value;
+}
+
+function getJsonValue(target) {
+    let segments_ = target.split('.');
+    let nestedObject_ = json;
+    for (let i = 0; i < segments_.length - 1; i++) {
+        if (!nestedObject_[segments_[i]]) {
+            nestedObject_[segments_[i]] = {};
+        }
+        nestedObject_ = nestedObject_[segments_[i]];
+    }
+    return nestedObject_[segments_[segments_.length - 1]];
+}
+
 let json;
+let refreshRate = 100;
 const urlParams = new URLSearchParams(window.location.search);
 const projectid = urlParams.get('projectid');
 function body() {
@@ -36,7 +61,7 @@ function body() {
                         $('canvas').remove()
                         const viewport =
                             page.getViewport({
-                                scale: 2,
+                                scale: $('#scale').val() ?? 2,
                             });
                         const canvas =
                             document.createElement(
@@ -100,6 +125,8 @@ function body() {
                         },
                         {
                             "title": "External Links",
+                            "target": "external-links",
+                            "desc": "For fontawesome icons, you can go to <a href=\"https://fontawesome.com/search\">Fontawesome.com</a><br><br>",
                             "isSignleInput": false,
                             "type": [
                                 {
@@ -116,6 +143,8 @@ function body() {
                 },
                 {
                     "title": "Experiences",
+                    "target": "experiences",
+                    "desc": "For fontawesome icons, you can go to <a href=\"https://fontawesome.com/search\">Fontawesome.com</a><br><br>",
                     "items": [
                         {
                             "title": "Experience",
@@ -123,11 +152,11 @@ function body() {
                             "type": [
                                 {
                                     "type": "string",
-                                    "target": "job"
+                                    "target": "job.value"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "company"
+                                    "target": "company.value"
                                 }
                             ]
                         }
@@ -136,13 +165,14 @@ function body() {
             ]
         }
 
-        let refreshRate = 100;
+
         $(function Naz() {
 
             let left = 0;
             setInterval(function () {
                 if (left === 0) {
                     // render page
+                    left = -1;
                     $('.logs').html('Fetching PDF...')
                     fetch(`/api/json2pdf?json=${encodeURIComponent(JSON.stringify(json))}`)
                         .then((response) => response.blob())
@@ -157,33 +187,9 @@ function body() {
                     setTimeout(() => {
                         $('.logs').html('Fetching was successful')
                     }, 1000);
-                    left = -1;
+
                 } else left--;
             }, refreshRate);
-
-            function updateJsonValue(target, value) {
-                let segments_ = target.split('.');
-                let nestedObject_ = json;
-                for (let i = 0; i < segments_.length - 1; i++) {
-                    if (!nestedObject_[segments_[i]]) {
-                        nestedObject_[segments_[i]] = {};
-                    }
-                    nestedObject_ = nestedObject_[segments_[i]];
-                }
-                nestedObject_[segments_[segments_.length - 1]] = value;
-            }
-
-            function getJsonValue(target) {
-                let segments_ = target.split('.');
-                let nestedObject_ = json;
-                for (let i = 0; i < segments_.length - 1; i++) {
-                    if (!nestedObject_[segments_[i]]) {
-                        nestedObject_[segments_[i]] = {};
-                    }
-                    nestedObject_ = nestedObject_[segments_[i]];
-                }
-                return nestedObject_[segments_[segments_.length - 1]];
-            }
 
             function loadJson() {
                 const maincollapsible = document.createElement("ul");
@@ -322,20 +328,150 @@ function body() {
                                 $(dynamic_inside_li).append(dynamic_inside_body)
                                 $(collapsible).append(dynamic_inside_li)
                                 $(dynamic_body).append(collapsible)
+                            } else if (item.type === 'soon') {
+                                // else than string
                             }
+                        } else {
+                            // Array input
+                            const dynamic_inside_li = document.createElement("li");
+                            const dynamic_inside_header = document.createElement("div");
+                            const dynamic_inside_body = document.createElement("div");
+                            $(dynamic_inside_header).addClass("collapsible-header")
+                            $(dynamic_inside_header).html(item.title)
+                            $(dynamic_inside_body).addClass("collapsible-body")
+
+                            const dynamic_inside_list = document.createElement("div");
+
+                            if (item.desc) {
+                                const dynamic_inside_desc = document.createElement("div");
+                                $(dynamic_inside_desc).addClass("item-desc")
+                                $(dynamic_inside_desc).append(item.desc)
+                                $(dynamic_inside_body).append(dynamic_inside_desc)
+                            }
+
+                            if (item.target !== undefined) {
+                                getJsonValue(item.target)?.forEach((array_item, index) => {
+                                    const dynamic_array_inputs = document.createElement("div");
+                                    $(dynamic_array_inputs).addClass('array-item-stack')
+                                    const dynamic_remove_div = document.createElement("div")
+                                    $(dynamic_remove_div).addClass('array-item-remove')
+                                    $(dynamic_remove_div).click(() => {
+                                        getJsonValue(item.target)?.splice(index, 1)
+                                        $(dynamic_array_inputs).css("display", "none")
+                                        left = 5;
+                                    })
+                                    const dynamic_remove_div_left = document.createElement("div")
+                                    $(dynamic_remove_div_left).addClass('array-item-remove-left')
+                                    const dynamic_remove_div_right = document.createElement("div")
+                                    $(dynamic_remove_div_right).addClass('array-item-remove-right')
+                                    $(dynamic_remove_div).append(dynamic_remove_div_left)
+                                    $(dynamic_remove_div).append(dynamic_remove_div_right)
+                                    $(dynamic_array_inputs).append(dynamic_remove_div)
+
+                                    item.type.forEach((type_array_item) => {
+                                        if (type_array_item.type === "string") {
+                                            const dynamic_input = document.createElement("input");
+                                            $(dynamic_input).attr('target', item.target)
+                                            $(dynamic_input).on('input', function (e) {
+                                                left = 5;
+                                                array_item[type_array_item.target] = $(dynamic_input).val()
+                                            })
+                                            $(dynamic_input).val(array_item[type_array_item.target])
+                                            if (type_array_item.placeholder) {
+                                                $(dynamic_input).attr('placeholder', type_array_item.placeholder)
+                                            }
+
+                                            $(dynamic_array_inputs).append(dynamic_input)
+                                        }
+                                    })
+
+                                    $(dynamic_inside_list).append(dynamic_array_inputs)
+                                })
+                                const dynamic_add_new_item = document.createElement("button");
+                                $(dynamic_add_new_item).text('Add')
+                                $(dynamic_add_new_item).css('border-radius', '5px')
+                                $(dynamic_add_new_item).css('border-width', '1px')
+                                $(dynamic_add_new_item).css('padding', '6px')
+                                $(dynamic_add_new_item).click(() => {
+                                    console.log(getJsonValue(item.target))
+                                    getJsonValue(item.target)?.push({})
+                                    let array_item = getJsonValue(item.target);
+                                    let index = getJsonValue(item.target)?.length - 1;
+
+                                    const dynamic_array_inputs = document.createElement("div");
+                                    $(dynamic_array_inputs).addClass('array-item-stack')
+                                    const dynamic_remove_div = document.createElement("div")
+                                    $(dynamic_remove_div).addClass('array-item-remove')
+                                    $(dynamic_remove_div).click(() => {
+                                        getJsonValue(item.target)?.splice(index, 1)
+                                        $(dynamic_array_inputs).css("display", "none")
+                                        left = 5;
+                                    })
+                                    const dynamic_remove_div_left = document.createElement("div")
+                                    $(dynamic_remove_div_left).addClass('array-item-remove-left')
+                                    const dynamic_remove_div_right = document.createElement("div")
+                                    $(dynamic_remove_div_right).addClass('array-item-remove-right')
+                                    $(dynamic_remove_div).append(dynamic_remove_div_left)
+                                    $(dynamic_remove_div).append(dynamic_remove_div_right)
+                                    $(dynamic_array_inputs).append(dynamic_remove_div)
+
+                                    item.type.forEach((type_array_item) => {
+                                        if (type_array_item.type === "string") {
+                                            const dynamic_input = document.createElement("input");
+                                            $(dynamic_input).attr('target', item.target)
+                                            $(dynamic_input).on('input', function (e) {
+                                                left = 5;
+                                                array_item[index][type_array_item.target] = $(dynamic_input).val()
+                                            })
+                                            $(dynamic_input).val(array_item[type_array_item.target])
+                                            if (type_array_item.placeholder) {
+                                                $(dynamic_input).attr('placeholder', type_array_item.placeholder)
+                                            }
+
+                                            $(dynamic_array_inputs).append(dynamic_input)
+                                        }
+                                    })
+
+                                    $(dynamic_inside_list).append(dynamic_array_inputs)
+                                })
+                                $(dynamic_inside_body).append(dynamic_inside_list)
+                                $(dynamic_inside_body).append(dynamic_add_new_item)
+                            }
+
+                            $(dynamic_inside_li).append(dynamic_inside_header)
+                            $(dynamic_inside_li).append(dynamic_inside_body)
+                            $(collapsible).append(dynamic_inside_li)
+                            $(dynamic_body).append(collapsible)
                         }
                     })
-
                     $(dynamic_li).append(dynamic_header)
                     $(dynamic_li).append(dynamic_body)
                     $(maincollapsible).append(dynamic_li)
                 })
                 $('.left').append(maincollapsible)
+                // Static settings page
+                $('.left').append(`
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header">PDF Settings</div>
+                        <div class="collapsible-body">
+                            <ul class="collapsible">
+                                <li>
+                                    <div class="collapsible-header">Scale</div>
+                                    <div class="collapsible-body">
+                                        <input id="scale" type="range" min="0.1" max="5" step="0.1" value="2" />
+                                        <div>Min: 0.1<br>Max: 5.0<br>Per: 0.1</div><div id="current-scala">Current Scala: 2</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>`)
             }
 
             function initalize() {
                 var elems = document.querySelectorAll(".collapsible");
-                var instances = M.Collapsible.init(elems);
+                M.Collapsible.init(elems);
                 var sliders = document.querySelectorAll('.t-slider'); // Get all elements with the class 't-slider'
 
                 for (var i = 0; i < sliders.length; i++) {
@@ -345,6 +481,11 @@ function body() {
                         slideBy: 'page', // Slide by page instead of individual items
                     });
                 }
+
+                $('#scale').change(() => {
+                    $('#current-scala').html('Current scale: ' + $('#scale').val())
+                    left = 1;
+                })
             }
 
             loadJson()
