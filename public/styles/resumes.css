@@ -19,6 +19,7 @@ body {
     animation: gradient 16s linear infinite;
     animation-direction: alternate;
     z-index: -999;
+    transition: display .5s ease;
 }
 
 @keyframes gradient {
@@ -50,8 +51,6 @@ body {
     margin-top: 8px;
 
     border-radius: 50%;
-
-    
 }
 
 .handpage-inner {
@@ -63,15 +62,13 @@ body {
     flex-wrap: wrap;
 
     overflow-y: scroll;
-    height:calc(100vh - 220px);
+    height: calc(100vh - 220px);
 }
 
 #pdfContainer > div {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
-
-    
 }
 
 canvas {
@@ -100,6 +97,7 @@ canvas {
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 20px;
+    transform: translateZ(10px);
 }
 
 .options {
@@ -111,7 +109,7 @@ canvas {
     width: 60px;
     height: 20px;
     border-radius: 10px;
-    background-color: #E8E8E8;
+    background-color: #e8e8e8;
     margin-top: 70px;
     margin-left: calc(100vw - 140px);
     text-align: center;
@@ -121,4 +119,51 @@ canvas {
 
 .logout:hover {
     background-color: red;
+}
+
+.widget {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    width: 60vw;
+    height: 50vh;
+    background-color: #27dbb1;
+    display: none;
+    transition: display .5s ease;
+}
+
+.back-blur {
+    filter: blur(5px);
+}
+
+.template-select {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.template-option > img {
+    border-radius: 20px;
+    width: 200px;
+}
+
+.template-option[active="true"] > img {
+    width: 210px;
+    box-shadow: 0 0 20px 10px gray;
+}
+
+.create-btn {
+    background-color: #1e6b59;
+    margin-top: 30px;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 20px;
+    margin-left: 42%;
+}
+
+.create-btn {
+    cursor: pointer;
 }

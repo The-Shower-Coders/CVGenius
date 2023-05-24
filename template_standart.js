@@ -1,5 +1,179 @@
 const fs = require('fs');
 
+function getTemplate() {
+    return {
+        "name": {
+          "value": "Name Surname",
+          "color": "#000000",
+          "background-color": "#ffffff",
+          "text-transform": "uppercase"
+        },
+        "job": {
+          "value": "Job Name",
+          "color": "#000000"
+        },
+        "phone": {
+          "value": "0505 001 16 16"
+        },
+        "email": {
+          "value": "Example@example.com"
+        },
+        "location": {
+          "value": "Turkey/Istanbul"
+        },
+        "external-links": [
+          {
+            "fontawesomeIcon": "fa-brands fa-github",
+            "value": "https://github.com/GroophyLifefor"
+          },
+          {
+            "fontawesomeIcon": "fa-brands fa-linkedin",
+            "value": "https://www.linkedin.com/in/groophylifefor/"
+          }
+        ],
+        "experiences": [
+          {
+            "job": {
+              "value": "Web Developer"
+            },
+            "company": {
+              "value": "Insider"
+            },
+            "working_period": {
+              "value": {
+                "start": "2020",
+                "end": "2023"
+              }
+            },
+            "location": {
+              "value": "Turkey/Istanbul"
+            },
+            "description": {
+              "value": "Insider connects data across channels, predicts future behavior with AI, and individualizes experiences from a single platform with the fastest time to value."
+            },
+            "points": [
+              {
+                "value": "Something"
+              },
+              {
+                "value": "Something else"
+              }
+            ]
+          }
+        ],
+        "education": [
+          {
+            "branch": {
+              "value": "Web teknolojisleri"
+            },
+            "school": {
+              "value": "Your School"
+            },
+            "education_period": {
+              "value": {
+                "start": "2019",
+                "end": "2023"
+              }
+            },
+            "location": {
+              "value": "Turkey/Istanbul"
+            },
+            "description": {
+              "value": "My school..."
+            },
+            "points": [
+              {
+                "value": "At this point..."
+              },
+              {
+                "value": "And at this point..."
+              }
+            ]
+          },
+          {
+            "branch": {
+              "value": "Temel Eğitim"
+            },
+            "school": {
+              "value": "Your School"
+            },
+            "education_period": {
+              "value": {
+                "start": "2015",
+                "end": "2019"
+              }
+            },
+            "location": {
+              "value": "Turkey/Istanbul"
+            },
+            "description": {
+              "value": "My school..."
+            },
+            "points": [
+              {
+                "value": "At this point..."
+              },
+              {
+                "value": "And at this point..."
+              }
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "value": "HTML"
+          },
+          {
+            "value": "CSS"
+          },
+          {
+            "value": "DOM JS"
+          },
+          {
+            "value": "VanillaJS"
+          },
+          {
+            "value": "NODEJS"
+          }
+        ],
+        "languages": [
+          {
+            "language": {
+              "value": "Turkish"
+            },
+            "state": {
+              "value": "Native"
+            },
+            "percent": {
+              "value": "100"
+            }
+          },
+          {
+            "language": {
+              "value": "English"
+            },
+            "state": {
+              "value": "Proficient"
+            },
+            "percent": {
+              "value": "75"
+            }
+          },
+          {
+            "language": {
+              "value": "German"
+            },
+            "state": {
+              "value": "Advenced"
+            },
+            "percent": {
+              "value": "60"
+            }
+          }
+        ]
+      }
+}
+
 function json2html_template_standart(json) {
     return `
     <!DOCTYPE html>
@@ -736,6 +910,10 @@ h5 {
     justify-content: space-between;
 }
 
+html {
+    -webkit-print-color-adjust: exact;
+}
+
 `
 
-module.exports = { json2html_template_standart }
+module.exports = { json2html_template_standart, getTemplate }
