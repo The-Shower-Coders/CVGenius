@@ -161,9 +161,10 @@ canvas {
     border-radius: 20px;
     width: fit-content;
     padding: 20px;
-    margin-left: 42%;
+    cursor: pointer;
 }
 
-.create-btn {
-    cursor: pointer;
+.center {
+    display: flex;
+    justify-content: center;
 }
