@@ -51,25 +51,23 @@ body {
 
 @media (max-width: 699px) {
     body::before {
-      content: "This page requires a minimum width of 700px.";
-      display: block;
-      text-align: center;
-      padding: 50vh 80px;
-      background-color: #f00;
-      color: #fff;
-      transition: background-color 0.5s ease;
+        content: "This page requires a minimum width of 700px.";
+        display: block;
+        text-align: center;
+        padding: 50vh 80px;
+        background-color: #f00;
+        color: #fff;
+        transition: background-color 0.5s ease;
+    }
 
-    }
-    
     body * {
-      display: none;
+        display: none;
     }
-  }
-  
+}
 
 @media (min-width: 1601px) {
     .left {
-        max-width: 450px !important;
+        max-width: 500px !important;
     }
 }
 
