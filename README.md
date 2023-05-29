@@ -42,6 +42,7 @@
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#contributors">Contributors</a></li>
   </ol>
 </details>
 
@@ -172,6 +173,17 @@ Distributed under the MIT License. See `LICENSE` for more information.
 * [Popperjs](https://popper.js.org/)
 * [Materializecss](https://materializecss.com/)
 * [Bootstrap](https://www.npmjs.com/package/bootstrap)
+
+## Contributors
+<b>Huge</b> thanks to all the contributers who helped make CVgenius possible and who supports us! ❤️
+<table align="center">
+  <tr align="center">
+    <td align="center"><a href="https://github.com/GroophyLifefor"><img src="https://avatars.githubusercontent.com/u/77299279?v=4" width="100px;" /><br /><sub><b>Murat Kirazkaya</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/nazwq"><img src="https://avatars.githubusercontent.com/u/124010517?v=4" width="100px;" alt=""/><br /><sub><b>Sudenaz Avcı</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/clowerty"><img src="https://avatars.githubusercontent.com/u/123985071?v=4" width="100px;" /><br /><sub><b>Neriman Topçu</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/nofe-wrk"><img src="https://avatars.githubusercontent.com/u/124031876?v=4" width="100px;" /><br /><sub><b>Ömer Yahya Yiğit</b></sub></a><br /></td>
+  </tr>
+</table>
 
 ---
 
