@@ -123,7 +123,12 @@ This is an example of how to list things you need to use the software and how to
    ```
    
 ## Usage
-3. run webapp
+3. setup environment
+   ```sh
+   setx BARD_TOKEN <Bard_Token>
+   ```
+
+4. run webapp
    ```sh
    npm test
    ```
