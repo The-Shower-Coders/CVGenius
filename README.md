@@ -71,7 +71,7 @@ Crafting compelling resume content can be challenging. To address this, our proj
 * Collaboration and Sharing:
 We understand the importance of collaboration and feedback during the resume creation process. Our platform facilitates easy sharing and collaboration with mentors, peers, or hiring managers. Users can generate shareable links, enabling others to review, provide feedback, and suggest edits, fostering a collaborative environment that enhances the quality of the final resume.
 * Exporting Options:
-After creating a polished and professional resume, users can conveniently export their resumes in various formats, including PDF, Word, or HTML. This flexibility ensures compatibility with different submission methods, online platforms, and applicant tracking systems (ATS).
+After creating a polished and professional resume, users can conveniently export their resumes in various formats, including PDF. This flexibility ensures compatibility with different submission methods, online platforms, and applicant tracking systems (ATS).
 * Responsive Design:
 Recognizing the increasing prevalence of mobile devices, our project incorporates a responsive design that ensures seamless functionality across desktops, laptops, tablets, and smartphones. Users can create and edit resumes on the go, enabling flexibility and accessibility.
 
@@ -123,7 +123,7 @@ This is an example of how to list things you need to use the software and how to
    ```
    
 ## Usage
-3. setup environment
+3. setup environment ( Optional )
    ```sh
    setx BARD_TOKEN <Bard_Token>
    ```
