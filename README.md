@@ -172,3 +172,16 @@ Distributed under the MIT License. See `LICENSE` for more information.
 * [Popperjs](https://popper.js.org/)
 * [Materializecss](https://materializecss.com/)
 * [Bootstrap](https://www.npmjs.com/package/bootstrap)
+
+---
+
+<p align="center">
+  <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/cfcead3a-664e-42e2-bff8-5cec4b192969" width="80%"></img>
+</p>
+<p align="center">
+  <b>Thanks for everything Insider & Kodluyoruz</b>
+</p>
+<p align="center">
+  <img src="https://avatars.githubusercontent.com/u/19927042?s=200&v=4" width="10%"></img>
+  <img src="https://avatars.githubusercontent.com/u/30476529?s=200&v=4" width="10%"></img>
+</p>
