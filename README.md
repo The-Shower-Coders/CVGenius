@@ -86,7 +86,9 @@ The Shower Coders' Effortless Resume Creator is an innovative project that empow
 
 ### Built With
 List of major frameworks used in building the project. including Add-ons/plugins for acknowledgement.
-- [materializecss](https://materializecss.com/)
+- [ExpressJS](https://expressjs.com/)
+- [Puppeteer](https://pptr.dev/)
+- [Materializecss](https://materializecss.com/)
 - [Bootstrap](https://www.npmjs.com/package/bootstrap)
 
 
@@ -157,7 +159,16 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 * [Font Awesome](https://fontawesome.com)
-
+* [ExpressJS](https://expressjs.com/)
+* [Puppeteer](https://pptr.dev/)
+* [Pdfobject](https://pdfobject.com/)
+* [jQuery](https://jquery.com/)
+* [FileSaver](https://www.npmjs.com/package/file-saver)
+* [pdf.js](https://mozilla.github.io/pdf.js/)
+* [Tiny-slider](https://ganlanyuan.github.io/tiny-slider/demo/)
+* [Popperjs](https://popper.js.org/)
+* [Materializecss](https://materializecss.com/)
+* [Bootstrap](https://www.npmjs.com/package/bootstrap)
 
 
 
