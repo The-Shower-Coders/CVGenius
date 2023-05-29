@@ -1,5 +1,3 @@
-
-<!-- PROJECT LOGO -->
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
