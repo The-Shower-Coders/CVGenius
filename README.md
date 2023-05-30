@@ -3,7 +3,7 @@
 <p align="center">
 
   <a href="https://cvgenius.app">
-    <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/a0142a6b-38ab-4b7c-8b27-7c05cdb3e63c" alt="Logo" >
+    <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/25784210-61e4-45dc-8320-854142f7e4f0" alt="Logo" width="160px" >
   </a>
 
   <p align="center">
@@ -54,7 +54,7 @@
 
 <p align="center">
   <a href="https://cvgenius.app">
-    <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/c9ee8358-fa2e-426b-b0fc-161e9a2381c9" alt="Logo" width="312" >
+    <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/25784210-61e4-45dc-8320-854142f7e4f0" alt="Logo" width="312" >
   </a>
 </p>
 
@@ -77,9 +77,8 @@ Recognizing the increasing prevalence of mobile devices, our project incorporate
 The Shower Coders' Effortless Resume Creator is an innovative project that empowers individuals to craft professional resumes with ease, efficiency, and style. By eliminating the need for extensive time investment and technical expertise, we are making resume creation accessible to everyone. Our user-friendly interface, smart content suggestions, intelligent data parsing, collaboration features, and exporting options combine to deliver a comprehensive solution that revolutionizes the way resumes are created. Join us on this journey as we redefine the art of resume building and help individuals confidently present their qualifications to potential employers.
 
 ### Screenshots
-
 <p align="center">
-  <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/f7ec5c56-906c-4209-9183-441b5fa11cd4" width="60%"></img>
+  <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/343cc602-288f-4ede-b026-acd0f96bff23" width="60%"></img>
 </p>
 
 
