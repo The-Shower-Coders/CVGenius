@@ -1,9 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-
   <a href="https://cvgenius.app">
-    <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/25784210-61e4-45dc-8320-854142f7e4f0" alt="Logo" width="160px" >
+    <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/000a5a2d-e0d5-4644-9838-018cef8ce257" alt="Logo" width="200px" >
   </a>
 
   <p align="center">
@@ -54,7 +53,7 @@
 
 <p align="center">
   <a href="https://cvgenius.app">
-    <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/25784210-61e4-45dc-8320-854142f7e4f0" alt="Logo" width="312" >
+    <img src="https://github.com/The-Shower-Coders/CVGenius/assets/77299279/000a5a2d-e0d5-4644-9838-018cef8ce257" alt="Logo" width="312" >
   </a>
 </p>
 
