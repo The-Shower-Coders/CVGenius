@@ -171,6 +171,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 -   [Font Awesome](https://fontawesome.com)
 -   [ExpressJS](https://expressjs.com/)
 -   [MongoDB](https://www.mongodb.com/)
+-   [Colors](https://www.npmjs.com/package/colors)
 -   [Puppeteer](https://pptr.dev/)
 -   [Pdfobject](https://pdfobject.com/)
 -   [jQuery](https://jquery.com/)
