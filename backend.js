@@ -1,7 +1,5 @@
 const app = require('./main.js');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-// let users = require('./private/users.json');
-// let resumes = require('./private/resumes.json');
 var passwordValidator = require('password-validator');
 const getBrowserInstance = require('./puppeteerInstance');
 var colors = require('colors');
