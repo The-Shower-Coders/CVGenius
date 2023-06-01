@@ -30,6 +30,7 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#architecture">Architecture</a></li>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
@@ -93,6 +94,10 @@ List of major frameworks used in building the project. including Add-ons/plugins
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
+
+### Architecture
+
+![image](https://github.com/The-Shower-Coders/CVGenius/assets/77299279/491e9159-b642-4d34-932d-6c93da673f07)
 
 ### Prerequisites
 
