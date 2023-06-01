@@ -18,10 +18,12 @@ function updateJSON(path, json) {
 function newUser(name, pass, mail) {
     const user = {
         username: name,
-        password: pass,
+        password: sha1(pass),
         mail: mail,
         userid: sha1(uuidv4()),
-        profileUrl: "https://github.com/GroophyLifefor/GroophyLifefor/assets/77299279/b73bfbb8-292c-4144-963f-e25c2543169c"
+        profileUrl: "https://github.com/GroophyLifefor/GroophyLifefor/assets/77299279/b73bfbb8-292c-4144-963f-e25c2543169c",
+        isPremium: false,
+        premiumEndDate: null
     };
     return user;
 }

@@ -1,12 +1,14 @@
 const app = require('./main.js');
-let users = require('./private/users.json');
-let resumes = require('./private/resumes.json');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+// let users = require('./private/users.json');
+// let resumes = require('./private/resumes.json');
 var passwordValidator = require('password-validator');
 const getBrowserInstance = require('./puppeteerInstance');
-const { spawn } = require('child_process');
+var colors = require('colors');
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
 const { v4: uuidv4 } = require('uuid');
+const sha1 = require('sha1');
 const fs = require('fs');
 const {
   isAnyUndefined,
@@ -20,7 +22,7 @@ const {
   json2html_template_standart,
   getTemplate
 } = require('./template_standart.js');
-
+colors.enable()
 getBrowserInstance()
 
 var schema = new passwordValidator();
@@ -32,6 +34,38 @@ schema
   .has().digits(2)                                // Must have at least 2 digits
   .has().not().spaces()                           // Should not have spaces
 
+
+// Setup Database Connection
+const uri = process.env.MONGODB;
+
+let client;
+let CVGeniusDB;
+let accounts;
+let resumes;
+
+function setupDatabase() {
+  try {
+    client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
+    });
+    // Connect the client to the server	(optional starting in v4.7)
+    client.connect();
+    // Send a ping to confirm a successful connection
+    client.db("admin").command({ ping: 1 });
+    console.log("Successfully connected to MongoDB".green);
+
+    CVGeniusDB = client.db("CVGenius");
+    accounts = CVGeniusDB.collection("Accounts");
+    resumes = CVGeniusDB.collection("Resumes");
+  } catch {
+    console.log("Can not connected to MongoDB".red);
+    process.exit(0);
+  }
+}
 
 function setupRoutes() {
 
@@ -104,7 +138,7 @@ function setupRoutes() {
   // -4 -> mail not valid (  *@*.*  )
   // -5 -> password not valid
   // -6 -> username must be at least 4 characters long
-  app.get('/api/signup', (req, res) => {
+  app.get('/api/signup', async (req, res) => {
     // get values from query params
     const name = req.query.name,
       pass = req.query.password,
@@ -116,8 +150,15 @@ function setupRoutes() {
     }
 
     // check if user already exits
-    if (isValueExists(users.users, 'username', name)) return res.send({ code: -2 });
-    if (isValueExists(users.users, 'mail', mail)) return res.send({ code: -3 });
+    const existingUser = await accounts.findOne({ $or: [{ mail: mail }, { username: name }] });
+    if (existingUser) {
+      if (existingUser.mail === mail) {
+        return res.send({ code: -3 });
+      }
+      if (existingUser.username === name) {
+        return res.send({ code: -2 });
+      }
+    }
 
     // check is mail valid
     if (!isValidEmail(mail)) return res.send({ code: -4 });
@@ -133,13 +174,12 @@ function setupRoutes() {
 
     // create account
     const user = newUser(name, pass, mail)
-    users.users.push(user);
-    resumes.resumes.push({
+    const resume = {
       userid: user.userid,
       storedResumes: []
-    })
-    updateJSON('./private/users.json', users)
-    updateJSON('./private/resumes.json', resumes)
+    }
+    accounts.insertOne(user);
+    resumes.insertOne(resume);
     return res.send({ code: 0, userid: user.userid })
   });
 
@@ -148,49 +188,43 @@ function setupRoutes() {
   // 0 -> success
   // -1 -> (name || mail) & password required
   // -2 -> user not exits
-  app.get('/api/signin', (req, res) => {
+  app.get('/api/signin', async (req, res) => {
     // get values from query params
-    const nameormail = req.query.nameormail,
-      pass = req.query.password;
+    let nameormail = req.query.nameormail,
+      pass = sha1(req.query.password);
 
     // check undefined parameters
     if (isAnyUndefined(nameormail, pass)) {
       return res.send({ code: -1 })
     }
 
-    // check user exits
-    let userid;
-    if (isValidEmail(nameormail)) {
-      // mail login
-      const user = users.users.find(user => user.mail === nameormail && user.password === pass);
-      if (!user) {
-        return res.send({ code: -2 })
-      }
-      userid = user.userid
-    } else {
-      // username login
-      const user = users.users.find(user => user.username === nameormail && user.password === pass);
-      if (!user) {
-        return res.send({ code: -2 })
-      }
-      userid = user.userid
-    }
+    const existingUser = await accounts.findOne({
+      $or: [
+        { mail: nameormail },
+        { username: nameormail }
+      ],
+      password: pass
+    });
 
-    return res.send({ code: 0, userid: userid })
+    if (existingUser) {
+      return res.send({ code: 0, userid: existingUser.userid })
+    } else {
+      return res.send({ code: -2 })
+    }
   });
 
   // get resumes by userid
   // 0 -> success
   // -1 -> userid not found
   // -2 -> user not found
-  app.get('/api/getresumes', (req, res) => {
+  app.get('/api/getresumes', async (req, res) => {
     const userid = req.query.userid;
 
     if (!userid) {
       return res.send({ code: -1 })
     }
 
-    const resumeList = resumes.resumes.find(resumelist => resumelist.userid === userid);
+    const resumeList = await resumes.findOne({ userid: userid });
     if (!resumeList) {
       return res.send({ code: -2 })
     }
@@ -198,61 +232,63 @@ function setupRoutes() {
     return res.send({ code: 0, resumeList: resumeList.storedResumes })
   });
 
-  app.get('/api/getproject', (req, res) => {
+  app.get('/api/getproject', async (req, res) => {
     const projectid = req.query.projectid;
 
     if (!projectid) {
       return res.send({ code: -1 })
     }
 
-    let returnData;
-    resumes.resumes.forEach(resumelist => {
-      resumelist.storedResumes.forEach(resume => {
-        if (resume.projectId == projectid) {
-          returnData = resume.json;
-        }
-      })
-    })
-    if (!returnData) {
-      return res.send({ code: -1 })
-    }
+    const cursor = resumes.find({});
+    let found;
+    await cursor.forEach(async (resume) => {
+      const storedResumes = resume.storedResumes;
+      const matchingProjects = storedResumes.filter(project => project.projectId === projectid);
 
-    return res.send({ code: 0, data: returnData })
+      if (matchingProjects.length > 0) {
+        found = matchingProjects[0];
+      }
+    });
+
+    if (found) {
+      return res.send({ code: 0, data: found.json })
+    } else {
+      return res.send({ code: -2 })
+    }
   });
 
-  app.get('/api/setproject', (req, res) => {
+  app.get('/api/setproject', async (req, res) => {
     const projectid = req.query.projectid;
     const json = req.query.json;
 
     if (!projectid) {
       return res.send({ code: -1 })
     }
+    
+    await resumes.updateMany(
+      { "storedResumes.projectId": projectid },
+      { $set: { "storedResumes.$[elem].json": JSON.parse(json) } },
+      { arrayFilters: [{ "elem.projectId": projectid }] }
+    );
 
-    resumes.resumes.forEach(resumelist => {
-      resumelist.storedResumes.forEach(resume => {
-        if (resume.projectId == projectid) {
-          resume.json = JSON.parse(json)
-        }
-      })
-    })
-
-    updateJSON('./private/resumes.json', resumes)
     return res.send({ code: 0 })
   });
 
-  app.get('/api/getprofile', (req, res) => {
+  app.get('/api/getprofile', async (req, res) => {
     const userid = req.query.userid;
 
     if (!userid) {
       return res.send({ code: -1 })
     }
 
-    const user = users.users.find(usr => usr.userid === userid);
+    const user = await accounts.findOne({ userid: userid });
+
     if (!user) {
-      return res.send({ code: -1 })
+      return res.send({ code: -1 });
     }
 
-    return res.send({ code: 0, profileUrl: user.profileUrl })
+    return res.send({ code: 0, profileUrl: user.profileUrl });
+
   });
 
   app.get('/api/json2pdf', (req, res) => {
@@ -297,7 +333,7 @@ function setupRoutes() {
       res.send("query not specified. {err: -1}");
       return;
     }
-  
+
     try {
       const { stdout } = await exec(`python bardcon.py "${req.query.q.replaceAll('"', '\"')}"`);
       res.send(stdout);
@@ -308,7 +344,7 @@ function setupRoutes() {
   });
 
   app.get('/api/create', async (req, res) => {
-    const 
+    const
       userid = req.query.userid,
       projectname = req.query.projectname,
       template = req.query.template;
@@ -319,19 +355,17 @@ function setupRoutes() {
     }
 
     let uuid = uuidv4();
-    resumes.resumes.forEach(resumelist => {
-      if (resumelist.userid === userid) {
-        resumelist.storedResumes.push({
-          projectName: projectname,
-          projectId: uuid,
-          json: getTemplate()
-        })
-      }
-    })
 
-    updateJSON('./private/resumes.json', resumes)
+    const resumeList = await resumes.findOne({ userid: userid });
+    resumeList.storedResumes.push({
+      projectName: projectname,
+      projectId: uuid,
+      template: template,
+      json: getTemplate()
+    });
+    await resumes.updateOne({ userid: userid }, { $set: { storedResumes: resumeList.storedResumes } });
     return res.send({ code: 0, projectId: uuid })
   })
 }
 
-module.exports = setupRoutes;
+module.exports = { setupRoutes, setupDatabase };
