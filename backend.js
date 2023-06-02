@@ -8,6 +8,7 @@ const exec = promisify(require('child_process').exec);
 const { v4: uuidv4 } = require('uuid');
 const sha1 = require('sha1');
 const fs = require('fs');
+const path = require('path');
 const {
   isAnyUndefined,
   isValueExists,
@@ -54,13 +55,13 @@ function setupDatabase() {
     client.connect();
     // Send a ping to confirm a successful connection
     client.db("admin").command({ ping: 1 });
-    console.log("Successfully connected to MongoDB".green);
-
+    console.log(`[${'OKEY'.green}${'] Successfully connected to MongoDB.'.blue}`.blue)
     CVGeniusDB = client.db("CVGenius");
     accounts = CVGeniusDB.collection("Accounts");
     resumes = CVGeniusDB.collection("Resumes");
-  } catch {
-    console.log("Can not connected to MongoDB".red);
+  } catch (err) {
+    console.log(`\n - [${' FAIL '.red.bold.underline}${'] Can not connected to MongoDB.'.gray}`.gray)
+    console.log(` - ${err}\n`.gray)
     process.exit(0);
   }
 }
@@ -120,6 +121,7 @@ function setupRoutes() {
     }
     res.sendFile(__dirname + '/views/app.html');
   });
+  console.log(`[${'OKEY'.green}${'] Routes configured.'.blue}`.blue)
 
   // --------------------------------------------------------------------------
   // --------------------------------------------------------------------------
@@ -297,6 +299,7 @@ function setupRoutes() {
     let html = json2html_template_standart(JSON.parse(decodeURIComponent(req.query.json)))
 
     let uuid = uuidv4();
+    fs.readdirSync(path.join(__dirname, 'private', 'temp_previews')).forEach(file => fs.unlinkSync(path.join(__dirname, 'private', 'temp_previews', file)));
     const filePath = __dirname + '/private/temp_previews/' + uuid + '.pdf';
 
     getBrowserInstance()
@@ -306,18 +309,7 @@ function setupRoutes() {
       .then(() => {
         // PDF successfully created
         // Send the response with the generated UUID
-        res.sendFile(filePath, (error) => {
-          if (error) {
-            console.error('Error sending file:', error);
-          } else {
-            // Delete the file after sending it
-            fs.unlink(filePath, (error) => {
-              if (error) {
-                console.error('Error deleting file:', error);
-              }
-            });
-          }
-        });
+        res.sendFile(filePath)
       })
       .catch((error) => {
         // Handle error
@@ -364,6 +356,8 @@ function setupRoutes() {
     await resumes.updateOne({ userid: userid }, { $set: { storedResumes: resumeList.storedResumes } });
     return res.send({ code: 0, projectId: uuid })
   })
+
+  console.log(`[${'OKEY'.green}${'] APIs configured.'.blue}`.blue)
 }
 
 module.exports = { setupRoutes, setupDatabase };

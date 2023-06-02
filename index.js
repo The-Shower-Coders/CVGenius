@@ -6,5 +6,5 @@ setupDatabase();
 setupRoutes(app);
 
 app.listen(port, () => {
-  console.log(`Uygulama http://localhost:${port} adresinde çalışıyor.`);
+  console.log(`[${'OKEY'.green}${`] Webapp running at ${`http://localhost:${port}`.underline.magenta}.`.blue}`.blue)
 });

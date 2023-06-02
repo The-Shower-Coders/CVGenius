@@ -6,9 +6,10 @@ async function getBrowserInstance() {
   if (browserInstance) {
     return browserInstance;
   } else {
-    browserInstance = await puppeteer.launch();
+    browserInstance = await puppeteer.launch({headless: 'new'});
     return browserInstance;
   }
 }
+
 
 module.exports = getBrowserInstance;
