@@ -312,6 +312,7 @@ function body() {
             ]
         }
 
+
         $(function Naz() {
 
             let left = 0;
@@ -847,7 +848,6 @@ function body() {
             function initalize() {
                 var elems = document.querySelectorAll(".collapsible");
                 M.Collapsible.init(elems);
-
                 var sliders = document.querySelectorAll('.t-slider'); // Get all elements with the class 't-slider'
 
                 for (var i = 0; i < sliders.length; i++) {
@@ -870,6 +870,5 @@ function body() {
         });
     }
 }
-
 
 body()

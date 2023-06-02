@@ -132,6 +132,11 @@ $(function Naz() {
                             console.error("Error:", error);
                         });
                 });
+
+                setTimeout(() => {
+                    $('.lds-grid').removeClass('lds-grid')
+                }, 1000);
+
             });
     }
 
