@@ -74,7 +74,7 @@ function setupRoutes() {
   // --------------------------------------------------------------------------
   // --------------------------------------------------------------------------
 
-  app.get('/', (req, res) => {
+  app.get('/', async (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
       return
@@ -82,7 +82,7 @@ function setupRoutes() {
     res.sendFile(__dirname + '/views/index.html');
   });
 
-  app.get('/pricing', (req, res) => {
+  app.get('/pricing', async (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
       return
@@ -90,7 +90,7 @@ function setupRoutes() {
     res.sendFile(__dirname + '/views/pricing.html');
   });
 
-  app.get('/signin', (req, res) => {
+  app.get('/signin', async (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
       return
@@ -98,7 +98,7 @@ function setupRoutes() {
     else res.sendFile(__dirname + '/views/signin.html');
   });
 
-  app.get('/signup', (req, res) => {
+  app.get('/signup', async (req, res) => {
     if (req.cookies.userid) {
       res.redirect('/resumes');
       return
@@ -106,7 +106,7 @@ function setupRoutes() {
     res.sendFile(__dirname + '/views/signup.html');
   });
 
-  app.get('/resumes', (req, res) => {
+  app.get('/resumes', async (req, res) => {
     if (!req.cookies.userid) {
       res.redirect('/signin');
       return
@@ -114,7 +114,7 @@ function setupRoutes() {
     res.sendFile(__dirname + '/views/resumes.html');
   });
 
-  app.get('/app', (req, res) => {
+  app.get('/app', async (req, res) => {
     if (!req.cookies.userid) {
       res.redirect('/signin');
       return
@@ -122,7 +122,7 @@ function setupRoutes() {
     res.sendFile(__dirname + '/views/app.html');
   });
 
-  app.get('/profile', (req, res) => {
+  app.get('/profile', async (req, res) => {
     if (!req.cookies.userid) {
       res.redirect('/signin');
       return
@@ -300,7 +300,7 @@ function setupRoutes() {
 
   });
 
-  app.get('/api/json2pdf', (req, res) => {
+  app.get('/api/json2pdf', async (req, res) => {
 
     if (!req.query.json) {
       res.send({ code: -1 });
