@@ -1,4 +1,5 @@
 $(function Naz() {
+
     $('.template-option').click(function () {
         $('.template-select').children().each(function () {
             $(this).attr('active', 'false')

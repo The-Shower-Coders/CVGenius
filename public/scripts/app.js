@@ -110,6 +110,7 @@ function body() {
                             viewport: viewport,
                         });
                     });
+                    $('#download').css('display', 'block');
                 });
 
         }
