@@ -121,6 +121,15 @@ function setupRoutes() {
     }
     res.sendFile(__dirname + '/views/app.html');
   });
+
+  app.get('/profile', (req, res) => {
+    if (!req.cookies.userid) {
+      res.redirect('/signin');
+      return
+    }
+    res.sendFile(__dirname + '/views/profile.html');
+  });
+
   console.log(`[${'OKEY'.green}${'] Routes configured.'.blue}`.blue)
 
   // --------------------------------------------------------------------------

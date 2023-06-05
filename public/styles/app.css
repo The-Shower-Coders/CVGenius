@@ -132,6 +132,7 @@ input,
     color: white;
     margin-left: calc(100% - 160px);
     margin-bottom: 10px;
+    display: none;
 }
 
 #download:hover {
