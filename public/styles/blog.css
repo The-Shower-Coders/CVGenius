@@ -1,0 +1,53 @@
+body {
+    margin: 0px;
+}
+
+.screen {
+    width: 100%;
+    height: fit-content;
+    background-color: #191919;    
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.outer-widget {
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 80vw;
+    height: fit-content;
+    background-color: #323130;
+}
+
+.inner-widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+    width: 500px;
+    height: fit-content;
+}
+
+.text {
+    color: #f5f4f4;
+    font: 1.0625rem/1.5 Segoe UI,"Segoe UI Web Regular","Segoe UI Regular WestEuropean","Segoe UI",Tahoma,Arial,Roboto,"Helvetica Neue",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+#title {
+    font-size: 2em;
+    text-align: center;
+}
