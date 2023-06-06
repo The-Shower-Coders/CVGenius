@@ -41,6 +41,7 @@ let client;
 let CVGeniusDB;
 let accounts;
 let resumes;
+let blogs;
 
 function setupDatabase() {
   try {
@@ -59,6 +60,7 @@ function setupDatabase() {
     CVGeniusDB = client.db("CVGenius");
     accounts = CVGeniusDB.collection("Accounts");
     resumes = CVGeniusDB.collection("Resumes");
+    blogs = CVGeniusDB.collection("Blogs");
   } catch (err) {
     console.log(`\n - [${' FAIL '.red.bold.underline}${'] Can not connected to MongoDB.'.gray}`.gray)
     console.log(` - ${err}\n`.gray)
@@ -132,6 +134,34 @@ function setupRoutes() {
 
   app.get('/blogs', async (req, res) => {
     res.sendFile(__dirname + '/views/blogs.html');
+  });
+
+  app.get('/blog/:blogid', async (req, res) => {
+    const blogid = req.params.blogid;
+
+    const blog = await blogs.findOne({ blogid: blogid });
+    if (!blog) {
+      const htmlString = `
+        <html>
+          <head>
+            <title>Blog Not Found</title>
+          </head>
+          <body>
+            <div style="display: flex;justify-content: center;">
+              <h3>Blog not found. Redirecting to <b>/blogs</b></h3>
+            </div>
+            <script>
+              setTimeout(() => {
+                window.location.replace("/blogs");
+              }, 2000);
+            </script>
+          </body>
+        </html>`;
+      res.setHeader('Content-Type', 'text/html');
+      res.send(htmlString);
+    }
+
+    res.sendFile(__dirname + '/views/blog.html');
   });
 
   console.log(`[${'OKEY'.green}${'] Routes configured.'.blue}`.blue)
@@ -277,7 +307,7 @@ function setupRoutes() {
     if (!projectid) {
       return res.send({ code: -1 })
     }
-    
+
     await resumes.updateMany(
       { "storedResumes.projectId": projectid },
       { $set: { "storedResumes.$[elem].json": JSON.parse(json) } },
@@ -369,6 +399,35 @@ function setupRoutes() {
     await resumes.updateOne({ userid: userid }, { $set: { storedResumes: resumeList.storedResumes } });
     return res.send({ code: 0, projectId: uuid })
   })
+
+  app.get('/api/getblog', async (req, res) => {
+    const blogid = req.query.blogid;
+
+    if (!blogid) {
+      return res.send({ code: -1 })
+    }
+
+    const blog = await blogs.findOne({ blogid: blogid });
+
+    if (!blog) {
+      return res.send({ code: -1 });
+    }
+
+    return res.send({ code: 0, blog: blog });
+
+  });
+
+  app.get('/api/getblogs', (req, res) => {
+    blogs.find().toArray()
+      .then(allBlogs => {
+        res.send({ code: 0, blogs: allBlogs });
+      })
+      .catch(error => {
+        console.error(error);
+        res.send({ code: -1 });
+      });
+  });
+  
 
   console.log(`[${'OKEY'.green}${'] APIs configured.'.blue}`.blue)
 }

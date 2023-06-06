@@ -16,28 +16,42 @@ let blogs = [
         blogid: "95dd25a34a187f77bf7sd471731a7da4b5d98e5147d6" // tıklandığında şöyle bir yönlendirme yapıcak cvgenius.app/blogs/<blogid>
     }
 ]
+// gibi bir çıktı alıyorsun
 
-$(document).ready(function() {
-    // Burada jquery kullanarak dinamik eklemelerini daha kolay yapabilirsin, birkaç şeyi araştırman gerekebilir.
+$(document).ready(function () {
+    function getBlogs() {
+        fetch(`/api/getblogs`)
+        .then((response) => response.json())
+        .then((result) => {
+            blogs = result.blogs;
+            initalize()
+        })
+    }
 
-    //örnek bir şema bırakıyorum
-    blogs.forEach(blog => {
+    function initalize() {
+        // Burada jquery kullanarak dinamik eklemelerini daha kolay yapabilirsin, birkaç şeyi araştırman gerekebilir.
 
-        // ul
-        //  \- li
-        //      \- a
-        //         | inner = <blog.title>
-        //         | href = "/"
+        //örnek bir şema bırakıyorum
+        blogs.forEach(blog => {
 
-        let ul = document.createElement('ul')
-        let li = document.createElement('li')
-        let a = document.createElement('a')
-        a.href = '/'
+            // ul
+            //  \- li
+            //      \- a
+            //         | inner = <blog.title>
+            //         | href = "/"
+            console.log(blog)
+            let ul = document.createElement('ul')
+            let li = document.createElement('li')
+            let a = document.createElement('a')
+            a.href = '/blog/' + blog.blogid
 
-        $(a).append(blog.title)
-        $(li).append(a)
-        $(ul).append(li)
+            $(a).append(blog.title)
+            $(li).append(a)
+            $(ul).append(li)
 
-        $('body').append(ul)
-    })
+            $('body').append(ul)
+        })
+    }
+
+    getBlogs();
 })
