@@ -77,10 +77,11 @@ function setupRoutes() {
   // --------------------------------------------------------------------------
 
   app.get('/', async (req, res) => {
-    if (req.cookies.userid) {
-      res.redirect('/resumes');
-      return
-    }
+    // Yakında yorum satırını silicem. ~ Murat
+    // if (req.cookies.userid) {
+    //   res.redirect('/resumes');
+    //   return
+    // }
     res.sendFile(__dirname + '/views/index.html');
   });
 
