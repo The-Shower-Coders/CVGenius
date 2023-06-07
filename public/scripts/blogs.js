@@ -49,9 +49,10 @@ $(document).ready(function () {
             $(li).append(a)
             $(ul).append(li)
 
-            $('body').append(ul)
+            $('.yourcode').append(ul)
         })
     }
 
+    $(".logo").click(() => window.location.href = '/')
     getBlogs();
 })

@@ -16,6 +16,7 @@ $(document).ready(function () {
   $(".create").css({ "position": "relative", "opacity": 0, "left": "+=100" });
   $(".create").animate({ left: 0, opacity: 1 }, 2000);
   $(".create").click(() => window.location.href = '/resumes')
+  $(".logo").click(() => window.location.href = '/')
 });
 
 $(".scroll").click(() => {
