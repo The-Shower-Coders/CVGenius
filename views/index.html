@@ -1,127 +1,289 @@
-
 <!DOCTYPE html>
-<html lang="tr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-
-    />
-
-    
-    <title>index page</title>
-    <link rel="stylesheet" type="text/css" href="styles/index.css" />
-
-  </head>
-  <body>
-    <div id="body-bg">
-     <!--! header başlangıç  -->
-
-    <div class="header-top">
-      <header class="header">
-        <a href="#" class="logo">
-          <p>CvGenius</p>
-        </a>
-        <nav class="navbar">
-          <a href="#" class="active">Home Page</a>
-         
-          <a href="#nasil">How To Use?</a>
-          <a href="Pricing">Pricing</a>
-                
-        
-        </nav>
-  
-        <div class="buttons">
-          <button id="search-btn">
-            <i class="fas fa-search"></i>
-          </button>
-          <button id="cart-btn">
-              <i onclick="window.location.replace('/signin')" class="fa-solid fa-arrow-right-to-bracket"></i>
-          </button>
-          
+<html lang="en">
+<head>
+  <link href="https://fonts.cdnfonts.com/css/roboto" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Open Sans" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/index.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <title>CVgenius</title>
+</head>
+<body>
+  <main class="container">
+    <video id="arkavideo" class="arkavideo" role="presentation" crossorigin="anonymous" playsinline preload="auto" muted
+      loop tabindex="-1" autoplay src="/images/ofis1.mp4" style="
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center center;
+          opacity: 0.9;
+        "></video>
+    <div class="headercontainer">
+      <div class="header">
+        <div class="logo">
+          <div style="font-weight: bold; font-size: 25px;">CV</div>
+          <div style="margin-top: 8px; font-weight: bold; font-size: 20px;">genius</div>
         </div>
-  
-        <div class="search-form">
-          <input
-            type="text"
-            class="search-input"
-            id="search-box"
-            placeholder="search here"
-          />
-          <i class="fas fa-search"></i>
+        <div>
+          <a href="/resumes" class="headerbtn">Create CV</a>
+          <a class="headerbtn">Communication</a>
+          <a href="/blogs" class="headerbtn">Blog</a>
+          <a href="/pricing" class="headerbtn">Pricing</a>
+          <a href="/signup" class="headerbtn">Sign up</a>
+          <a href="/signin" class="headerbtn">Sign in</a>
         </div>
-  
-      
-        
-      </header>
-    </div>
-    <!--! header bitiş  -->
-
-    <!--! home sbaşlangıç  -->
-    <section class="home" id="home">
-      <div class="content">
-        <h1 class="heading">CV<span>Genius</span></h1>
-        <p>Welcome to CVGenius</p>
-        <p>
-          Welcome to CVGenius!
-
-          Meet our cutting-edge AI-powered CV builder to take your career to the next level. 
-          Say goodbye to the hassle of recreating an engaging resume. Our intelligent algorithms analyze your skills and experience 
-          to create personalized, professional CVs in minutes. Stand out from the competition and reach your dream job easily. 
-          With user-friendly templates and real-time recommendations, creating a standout CV has never been easier. 
-          Get started today and upgrade your career opportunities with our artificial intelligence technology!
-        </p>
-        <a href="resumes" class="btn">Start Now</a>
-        
-
-        <a href="signin" class="btn">Sign in or Sign up</a>
       </div>
-    </section>
-
-
-    <!--! home bitiş -->
-    <section class="menu" id="nasil">
-        <h1 class="heading">How to <span>Use?</span></h1>
-        
-            <ul class="nasilya">
-                
-                
-  CVGenius is an AI-powered CV creation platform to advance your career. Here are the steps on how to use the site:
-<li>Account Creation:To start using CVGenius, you must first create an account. To register, click the "Create Account" button on the main page and fill in the required information.</li>
-<li>Profile Information: Add your profile information after creating an account. Identify yourself in areas such as name, contact information, skills, education and experience. This information will be used in the creation of your CV.</li>
-<li>CV Creation: CVGenius offers you user-friendly templates. To create a CV, click "Create CV" and select the template you want. Next, enter your information in the relevant fields. The system will automatically create your CV with artificial intelligence technology.</li> 
-<li>Personalization: You can use different editing options to personalize your created CV. You can adjust the font, color, layout and section order according to your wishes.</li>
-<li>Review Recommendations: CVGenius provides real-time recommendations to optimize your CV. You can make your CV more impressive by taking these suggestions into account. Don't forget to use the checking tools provided by the system to check for language and spelling errors.</li>
-<li>Download and Share: After completing your CV, you can download it in PDF format with the "Download" option. You can also share your CV created through CVGenius on social media platforms or add it directly to job applications.</li>
-CVGenius is a powerful tool to help shape your career. Creating an impressive CV has never been easier, thanks to its user-friendly interface and artificial intelligence technology. Unlock your potential and reach your career goals using CVGenius!
-            </ul>
-
-            
-         </section>
     </div>
-  </div>
-
-    <!-- footer başlangıç -->
-    <footer class="footer">
-        <div class="footer-content">
-          <div class="social-media">
-            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i> CVGeniusOfficial</a>
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i> @CVGenius</a>
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i> @CVGenius</a>
+    <div class="wrapper">
+      <span class="typingdemo">Create your professional CV here</span>
+      <span class="title2">Start Preparing Now</span>
+      <button class="create">Create your CV</button>
+      <button class="scroll">
+        <i class="fa-solid fa-arrow-down"></i>
+      </button>
+    </div>
+    <div class="heading">
+      <h2 class="titlecv">Create a standout CV</h2>
+      <span class="şablon2">Increase your chances of getting hired by using professionally
+        prepared CV samples. Having trouble preparing your resume? Get
+        inspired by looking at the templates below!</span>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="/images/cv1.png" alt="" />
           </div>
-          <div class="newsletter">
-            <p class="newsletter-text">Do you have any suggestions? </p>
-            <input type="email" class="newsletter-input" placeholder="Contact us!">
-            <button class="newsletter-button">Send</button>
+          <div class="swiper-slide">
+            <img src="/images/cv2.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv3.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv4.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv5.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv6.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv7.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv8.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv9.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv10.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv11.png" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/cv12.png" alt="" />
           </div>
         </div>
-      </footer>
-      
+      </div>
+      <div>
+        <span class="title4">See all our professional CV template examples.</span>
+      </div>
+      <div class="alttitle">
+        <div class="headings">
+          <span class="title5">CVgenius resume</span>
+          <span class="title6">Why Use the Builder?</span>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="cardicon">
+              <i class="fa-solid fa-gem"></i>
+            </div>
+            <div class="cardtitlecontainer">
+              <div class="cardtitle">Free AND Premium</div>
+              <div class="carddesc">
+                We offer both free and premium features. Want your resume to
+                have that extra punch? Upgrade to Premium. On a budget? That's
+                OK too - you can use our resume buider completely free of
+                charge.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardicon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="cardtitlecontainer">
+              <div class="cardtitle">Increased likelihood of being hired</div>
+              <div class="carddesc">
+                You will stand out from all other candidates with a
+                professional CV that describes you very well. Also, your
+                chances of being invited for an interview will increase by up
+                to 65%.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardicon"><i class="fa-solid fa-paste"></i></div>
+            <div class="cardtitlecontainer">
+              <div class="cardtitle">Edit your applications</div>
+              <div class="carddesc">
+                It is very important to be able to organize your CV according
+                to the job you are applying for. Thanks to your CV maker
+                personal account, you will be able to create and edit several
+                different CV.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardicon"><i class="fa-solid fa-laptop"></i></div>
+            <div class="cardtitlecontainer">
+              <div class="cardtitle">ATS-Friendly</div>
+              <div class="carddesc">
+                Our resume templates are ATS-friendly. It means your resume
+                won’t automatically be rejected because an ATS can’t read it.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>Our Users Are Being Hired at the World's Leading Companies.</div>
+        <div class="vizitcontainer">
+          <div class="vizit">
+            <div class="vizithead">
+              <img class="img" src="/images/userprofiles/kullanıcı1.jpeg" />
+              <div class="vizitrate">
+                <div class="vizithood">Eren Kulaksız</div>    
+                <div class="vizittitle">Turk net'de Front-End Developer</div>    
+                <div style="color: gold;">
+                  <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="vizittitlecontainer">
+              <div class="vizitdesc">
+                Our resume templates are ATS-friendly. It means your resume
+                won’t automatically be rejected because an ATS can’t read it.
+              </div>
+            </div>
+          </div>
+          <div class="vizit">
+            <div class="vizithead">
+              <img class="img" src="/images/userprofiles/kullanıcı2.jpg" />
+              <div class="vizitrate">
+                <div class="vizithood">Eren Kulaksız</div>    
+                <div class="vizittitle">Turk net'de Front-End Developer</div>    
+                <div style="color: gold;">
+                  <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="vizittitlecontainer">
+              <div class="vizitdesc">
+                Our resume templates are ATS-friendly. It means your resume
+                won’t automatically be rejected because an ATS can’t read it.
+              </div>
+            </div>
+          </div>
+          <div class="vizit">
+            <div class="vizithead">
+              <img class="img" src="/images/userprofiles/kullanıcı3.jpg" />
+              <div class="vizitrate">
+                <div class="vizithood">Eren Kulaksız</div>    
+                <div class="vizittitle">Turk net'de Front-End Developer</div>    
+                <div style="color: gold;">
+                  <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="vizittitlecontainer">
+              <div class="vizitdesc">
+                Our resume templates are ATS-friendly. It means your resume
+                won’t automatically be rejected because an ATS can’t read it.
+              </div>
+            </div>
+          </div>
+          <div class="vizit">
+            <div class="vizithead">
+              <img class="img" src="/images/userprofiles/kullanıcı4.jpg" />
+              <div class="vizitrate">
+                <div class="vizithood">Eren Kulaksız</div>    
+                <div class="vizittitle">Turk net'de Front-End Developer</div>    
+                <div style="color: gold;">
+                  <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <div class="vizittitlecontainer">
+              <div class="vizitdesc">
+                Our resume templates are ATS-friendly. It means your resume
+                won’t automatically be rejected because an ATS can’t read it.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="socials">
+        <div class="twitter"><i class="fa-brands fa-square-twitter" style="color: #bababa;  font-size: 32px;"></i></div>
+        <div class="github"><i class="fa-brands fa-square-github" style="color: #bababa;  font-size: 32px;"></i></div>
+        <div class="linkedin"><i class="fa-brands fa-linkedin" style="color: #bababa; font-size: 32px;"></i></div>
+      </div>
+      <div class="links">
+        <div class="linkcontainer">CVgenius
+          <div>Homepage</div>
+          <div>Resume Templates</div>
+          <div>CVTemplates</div>
+          <div>Cover Letters</div>
+        </div>
+        <div class="linkcontainer">Learn
+          <div>Career Blog</div>
+          <div>How to Write a Resuume</div>
+          <div>How to Write CV</div>
+          <div>How to Write a Cover Letter</div>
+          <div>Resume Examples</div>
+          <div>Cover Letter Examples</div>
+        </div>
+        <div class="linkcontainer">Other
+          <div>Pricing</div>
+          <div>About Us</div>
+          <div>Help Center</div>
+        </div>
+        <div class="linkcontainer">Legal/Contact
+          <div>Terms of Use</div>
+          <div>Privacy Policy</div>
+          <div>Cookie Policy</div>
+          <div>cvgenius3@gmail.com</div>
+        </div>
+      </div>
+    </div>
 
-  
-    
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="/scripts/index.js"></script>
+  </main>
+</body>
 </html>
