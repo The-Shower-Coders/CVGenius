@@ -272,6 +272,7 @@ canvas {
     background-color: #27dbb1;
     display: none;
     transition: display 0.5s ease;
+    z-index: 999; 
 }
 
 .back-blur {
