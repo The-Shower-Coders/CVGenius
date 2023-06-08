@@ -12,7 +12,7 @@ body {
     width: 50px;
     height: 50px;
 
-    margin-left: calc(100vw - 115px);
+    margin-left: calc(100vw - 165px);
     margin-top: 8px;
 
     border-radius: 50%;
@@ -49,13 +49,12 @@ body {
 
 .handpage {
     position: absolute;
-    width: calc(100vw - 50px);
-    height: calc(100vh - 50px);
+    width: calc(100vw - 100px);
+    height: calc(100vh - 100px);
     background-color: white;
 
-    margin-left: 50px;
-    margin-top: 50px;
-    border-top-left-radius: 20px;
+    margin: 50px;
+    border-radius: 20px;
 }
 
 .handpage-inner {
@@ -67,7 +66,7 @@ body {
     flex-wrap: wrap;
 
     overflow-y: scroll;
-    height: calc(100vh - 220px);
+    height: calc(100vh - 300px);
 }
 
 #pdfContainer > div {
@@ -116,7 +115,7 @@ canvas {
     border-radius: 10px;
     background-color: #e8e8e8;
     margin-top: 70px;
-    margin-left: calc(100vw - 140px);
+    margin-left: calc(100vw - 190px);
     text-align: center;
     transition: background-color 0.5s ease;
     cursor: pointer;
@@ -133,7 +132,7 @@ canvas {
     transform: translate(-50%, -50%);
     border-radius: 20px;
     width: 60vw;
-    height: 50vh;
+    height: fit-content;
     background-color: #27dbb1;
     display: none;
     transition: display 0.5s ease;
@@ -163,6 +162,7 @@ canvas {
 .create-btn {
     background-color: #1e6b59;
     margin-top: 30px;
+    margin-bottom: 30px;
     border-radius: 20px;
     width: fit-content;
     padding: 20px;
