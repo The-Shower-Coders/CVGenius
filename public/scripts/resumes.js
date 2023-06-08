@@ -49,6 +49,44 @@ $(function Naz() {
         if (parts.length === 2) return parts.pop().split(";").shift();
     }
 
+    function addNewProject(page, container, projectName, projectId, viewport) {
+        const divider =
+            document.createElement(
+                "div"
+            );
+
+        const href =
+            document.createElement("a");
+        href.href =
+            "/app?projectid=" +
+            projectId;
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+        const context =
+            canvas.getContext("2d");
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const label =
+            document.createElement("a");
+        label.href =
+            "/app?projectid=" +
+            projectId;
+        label.innerText = projectName;
+
+        href.appendChild(canvas);
+        divider.appendChild(href);
+        divider.appendChild(label);
+        container.appendChild(divider);
+
+        page.render({
+            canvasContext: context,
+            viewport: viewport,
+        });
+    }
+
     function fetchData() {
         fetch("/api/getprofile?userid=" + getCookie("userid"))
             .then((response) => response.json())
@@ -90,41 +128,8 @@ $(function Naz() {
                                                 scale: 1,
                                             });
 
-                                        const divider =
-                                            document.createElement(
-                                                "div"
-                                            );
-
-                                        const href =
-                                            document.createElement("a");
-                                        href.href =
-                                            "/app?projectid=" +
-                                            projectId;
-                                        const canvas =
-                                            document.createElement(
-                                                "canvas"
-                                            );
-                                        const context =
-                                            canvas.getContext("2d");
-                                        canvas.height = viewport.height;
-                                        canvas.width = viewport.width;
-
-                                        const label =
-                                            document.createElement("a");
-                                        label.href =
-                                            "/app?projectid=" +
-                                            projectId;
-                                        label.innerText = projectName;
-
-                                        href.appendChild(canvas);
-                                        divider.appendChild(href);
-                                        divider.appendChild(label);
-                                        container.appendChild(divider);
-
-                                        page.render({
-                                            canvasContext: context,
-                                            viewport: viewport,
-                                        });
+                                        addNewProject(page, container, projectName, projectId, viewport);
+                                        
                                     });
                                 });
                         })

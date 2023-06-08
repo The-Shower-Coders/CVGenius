@@ -86,10 +86,11 @@ function setupRoutes() {
   });
 
   app.get('/pricing', async (req, res) => {
-    if (req.cookies.userid) {
-      res.redirect('/resumes');
-      return
-    }
+    // Yakında yorum satırını silicem. ~ Murat
+    // if (req.cookies.userid) {
+    //   res.redirect('/resumes');
+    //   return
+    // }
     res.sendFile(__dirname + '/views/pricing.html');
   });
 
