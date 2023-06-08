@@ -86,10 +86,11 @@ function setupRoutes() {
   });
 
   app.get('/pricing', async (req, res) => {
-    if (req.cookies.userid) {
-      res.redirect('/resumes');
-      return
-    }
+    // Yakında yorum satırını silicem. ~ Murat
+    // if (req.cookies.userid) {
+    //   res.redirect('/resumes');
+    //   return
+    // }
     res.sendFile(__dirname + '/views/pricing.html');
   });
 
@@ -343,7 +344,13 @@ function setupRoutes() {
     let html = json2html_template_standart(JSON.parse(decodeURIComponent(req.query.json)))
 
     let uuid = uuidv4();
-    fs.readdirSync(path.join(__dirname, 'private', 'temp_previews')).forEach(file => fs.unlinkSync(path.join(__dirname, 'private', 'temp_previews', file)));
+    if (!fs.existsSync('./private/temp_previews/')) {
+      fs.mkdirSync(directoryPath, { recursive: true });
+    }
+    try
+    {
+      fs.readdirSync(path.join(__dirname, 'private', 'temp_previews')).forEach(file => fs.unlinkSync(path.join(__dirname, 'private', 'temp_previews', file)));
+    } catch { /* IGNORE */}
     const filePath = __dirname + '/private/temp_previews/' + uuid + '.pdf';
 
     getBrowserInstance()
