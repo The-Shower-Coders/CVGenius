@@ -134,8 +134,77 @@ body {
 }
 /* END */
 
-
+.cat {
+    display: flex;
+    flex-direction: column;
+}
 
 .yourcode {
-    height: 80vh;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.maintitle {
+    color:#444444;
+    font-family :Camphor "Open Sans" "Segoe UI" sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.activefont {
+    color:#444444;
+    font-family :Camphor "Open Sans" "Segoe UI" sans-serif;
+    margin-bottom: 10px;
+    margin-top: 7px;
+    padding-right: 10px;
+    
+}
+
+.appendclass {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.item {
+    width: 40vw;
+    max-width: 500px;
+    height: fit-content;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title {
+    font-size: 24px;
+    flex-grow: 2;
+}
+
+.desc {
+    flex-grow: 3;
+}
+
+.props {
+    flex-grow: 1;
+
+    display: flex;
+    gap: 30px;
+}
+
+.dropdown-content {
+    width: 400px !important;
 }

@@ -1,0 +1,296 @@
+<html lang="en">
+    <head>
+        <title>Cvgenius Communication</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700"
+            rel="stylesheet"
+            type="text/css"
+        />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.usebootstrap.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        />
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+
+        <link rel="stylesheet" href="styles/communication.css" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Open Sans"
+            rel="stylesheet"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="styles/navbar.css" />
+    </head>
+    <body>
+        <div class="headercontainer">
+            <div class="header">
+                <div class="logo">
+                    <div style="font-weight: bold; font-size: 25px">CV</div>
+                    <div
+                        style="
+                            margin-top: 8px;
+                            font-weight: bold;
+                            font-size: 20px;
+                        "
+                    >
+                        genius
+                    </div>
+                </div>
+                <div>
+                    <a href="/resumes" class="headerbtn">Create CV</a>
+                    <a href="/communication" class="headerbtn">Communication</a>
+                    <a href="/blogs" class="headerbtn">Blog</a>
+                    <a href="/pricing" class="headerbtn">Pricing</a>
+                    <a href="/signup" class="headerbtn">Sign up</a>
+                    <a href="/signin" class="headerbtn">Sign in</a>
+                </div>
+            </div>
+        </div>
+        <video
+            id="arkavideo"
+            class="arkavideo"
+            role="presentation"
+            crossorigin="anonymous"
+            playsinline
+            preload="auto"
+            muted
+            loop
+            tabindex="-1"
+            autoplay
+            src="/images/ofis1.mp4"
+            style="
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: center center;
+                opacity: 0.9;
+            "
+        ></video>
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="wrapper">
+                            <div class="row no-gutters">
+                                <div
+                                    class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch"
+                                >
+                                    <div class="contact-wrap w-100 p-md-5 p-4">
+                                        <h3 class="mb-4">Contact us!</h3>
+                                        <div
+                                            id="form-message-warning"
+                                            class="mb-4"
+                                        ></div>
+                                        <div
+                                            id="form-message-success"
+                                            class="mb-4"
+                                        >
+                                            Your message was sent, thank you!
+                                        </div>
+                                        <form
+                                            method="POST"
+                                            id="contactForm"
+                                            name="contactForm"
+                                            class="contactForm"
+                                        >
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label
+                                                            class="label"
+                                                            for="name"
+                                                            >NAME AND
+                                                            SURNAME</label
+                                                        >
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="name"
+                                                            id="name"
+                                                            placeholder="NAME AND SURNAME"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label
+                                                            class="label"
+                                                            for="email"
+                                                            >E-MAIL
+                                                            ADDRESS</label
+                                                        >
+                                                        <input
+                                                            type="email"
+                                                            class="form-control"
+                                                            name="email"
+                                                            id="email"
+                                                            placeholder="E-MAIL ADRESS"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label
+                                                            class="label"
+                                                            for="subject"
+                                                            >SUBJECT</label
+                                                        >
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="subject"
+                                                            id="subject"
+                                                            placeholder="SUBJECT"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label
+                                                            class="label"
+                                                            for="#"
+                                                            >MESSAGE</label
+                                                        >
+                                                        <textarea
+                                                            name="message"
+                                                            class="form-control"
+                                                            id="message"
+                                                            cols="30"
+                                                            rows="4"
+                                                            placeholder="MESSAGE"
+                                                        ></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input
+                                                            type="submit"
+                                                            value="SUBMİT"
+                                                            class="btn btn-primary"
+                                                        />
+                                                        <div
+                                                            class="submitting"
+                                                        ></div>
+                                                        <!-- <a href="mailto: cvgenius3@gmail.com?Subject=I'd%20like%20to%20attend%20the%20event&Body=Name:%0D%0APhone%20Number:%0D%0ABlah%20blah">cvgenius3@gmail.com</a> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div
+                                    class="col-lg-4 col-md-5 d-flex align-items-stretch"
+                                >
+                                    <div
+                                        class="info-wrap bg-primary w-100 p-md-5 p-4"
+                                    >
+                                        <h3>Contact Us!</h3>
+                                        <p class="mb-4">
+                                            We are open to any suggestions or
+                                            just chat
+                                        </p>
+                                        <div
+                                            class="dbox w-100 d-flex align-items-center"
+                                        >
+                                            <div
+                                                class="icon d-flex align-items-center justify-content-center"
+                                            >
+                                                <span
+                                                    class="fa fa-paper-plane"
+                                                ></span>
+                                            </div>
+                                            <div class="text pl-3">
+                                                <p>
+                                                    <span>E-mail:</span>
+                                                    <a
+                                                        href="mailto:cvgenius3@gmail.com"
+                                                        >cvgenius3@gmail.com</a
+                                                    >
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="dbox w-100 d-flex align-items-center"
+                                        >
+                                            <div
+                                                class="icon d-flex align-items-center justify-content-center"
+                                            >
+                                                <span
+                                                    class="fa fa-globe"
+                                                ></span>
+                                            </div>
+                                            <div class="text pl-3">
+                                                <p>
+                                                    <span>Website</span>
+                                                    <a href="#"
+                                                        >https://cvgenius.app/</a
+                                                    >
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="footer">
+            <div class="socials">
+              <div class="twitter"><i class="fa-brands fa-square-twitter" style="color: #bababa;  font-size: 32px;"></i></div>
+              <a class="github" target="_blank" href="https://github.com/The-Shower-Coders/CVGenius"><i class="fa-brands fa-square-github" style="color: #bababa;  font-size: 32px;"></i></a>
+              <div class="linkedin"><i class="fa-brands fa-linkedin" style="color: #bababa; font-size: 32px;"></i></div>
+            </div>
+            <div class="links">
+              <div class="linkcontainer">CVgenius
+                <div>Homepage</div>
+                <div>Resume Templates</div>
+                <div>CVTemplates</div>
+                <div>Cover Letters</div>
+              </div>
+              <div class="linkcontainer">Learn
+                <div>Career Blog</div>
+                <div>How to Write a Resuume</div>
+                <div>How to Write CV</div>
+                <div>How to Write a Cover Letter</div>
+                <div>Resume Examples</div>
+                <div>Cover Letter Examples</div>
+              </div>
+              <div class="linkcontainer">Other
+                <div>Pricing</div>
+                <div>About Us</div>
+                <div>Help Center</div>
+              </div>
+              <div class="linkcontainer">Legal/Contact
+                <div>Terms of Use</div>
+                <div>Privacy Policy</div>
+                <div>Cookie Policy</div>
+                <div>cvgenius3@gmail.com</div>
+              </div>
+            </div>
+          </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            $(".logo").click(() => (window.location.href = "/"));
+        </script>
+    </body>
+</html>
