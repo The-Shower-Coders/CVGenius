@@ -164,6 +164,10 @@ function setupRoutes() {
     res.sendFile(__dirname + '/views/blog.html');
   });
 
+  app.get('/communication', async (req, res) => {
+    res.sendFile(__dirname + '/views/communication.html');
+  });
+
   console.log(`[${'OKEY'.green}${'] Routes configured.'.blue}`.blue)
 
   // --------------------------------------------------------------------------
