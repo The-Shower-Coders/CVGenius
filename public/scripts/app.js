@@ -957,6 +957,7 @@ function body() {
                         if (!isLeftMouseDown) stopDragging();
                         if (isDragging) {
                             offsetX = event.clientX - initialX;
+                            if (event.clientX + 100 > $(window).width()) return;
                             $('.left').css('min-width', initalsizex + offsetX)
                         }
                     }
