@@ -18,7 +18,7 @@ let blogs = [
 ]
 // gibi bir çıktı alıyorsun
 
-$(document).ready(function () {
+$(document).ready(function Naz() {
     function getBlogs() {
         fetch(`/api/getblogs`)
         .then((response) => response.json())
