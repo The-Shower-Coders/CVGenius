@@ -10,7 +10,6 @@ body {
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: rgb(186, 186, 186);
 }
 .headercontainer {
   flex: 1;
@@ -165,8 +164,21 @@ body {
   animation-direction: alternate;
   z-index: -999;
   width: 100%;
-  height: 150vh;
+  height: 170vh;
   position: absolute;
+  min-width: 650px;
+}
+
+@media (max-width: 899px) {
+  #body-bg {
+    height: 200vh;
+  }
+}
+
+@media (max-width: 740px) {
+  #body-bg {
+    height: 240vh;
+  }
 }
 
 .flex-column {
