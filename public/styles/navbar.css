@@ -17,6 +17,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 9999;
+    line-height: 1.5;
 }
 .logo {
     display: flex;

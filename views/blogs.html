@@ -7,6 +7,10 @@
             href="https://fonts.googleapis.com/css?family=Open Sans"
             rel="stylesheet"
         />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/styles/blogs.css" />
         <link
@@ -47,7 +51,26 @@
         </div>
 
         <div class="yourcode">
-            <!-- Neriman kodunu buraya yaz -->
+            <div class="center">
+                <div class="maintitle">Blogs</div>
+            </div>
+            <div class="center">
+                <div class="activefont">blogs/</div>
+                <div>
+                    <a class="dropdown-trigger btn" href="#" data-target="dropdown1"
+                    >Everyone</a
+                >
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="#!">Everyone</a></li>
+                    <li><a href="#!">Just About Resumes</a></li>
+                    <li><a href="#!">Just Last Month</a></li>
+                </ul>
+                </div>
+            </div>
+            <br>
+            <div class="center">
+                <div class="appendclass"></div>
+            </div>
         </div>
 
         <div class="footer">
@@ -58,7 +81,11 @@
                         style="color: #bababa; font-size: 32px"
                     ></i>
                 </div>
-                <a class="github" target="_blank" href="https://github.com/The-Shower-Coders/CVGenius">
+                <a
+                    class="github"
+                    target="_blank"
+                    href="https://github.com/The-Shower-Coders/CVGenius"
+                >
                     <i
                         class="fa-brands fa-square-github"
                         style="color: #bababa; font-size: 32px"
@@ -103,5 +130,9 @@
                 </div>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            $(".dropdown-trigger").dropdown();
+        </script>
     </body>
 </html>
