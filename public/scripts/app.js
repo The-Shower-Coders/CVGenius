@@ -70,8 +70,27 @@ function body() {
         fetch(`/api/getproject?projectid=${projectid}`)
             .then((response) => response.json())
             .then((result) => {
-                json = result.data;
-                afterInitalize()
+                if (result.code == -2) {
+                    const htmlString = `
+                    <html>
+                        <head>
+                            <title>Project Not Found</title>
+                        </head>
+                        <body>
+                            <div style="display: flex;justify-content: center;">
+                            <h3>Project not found. Redirecting to <b>/Resumes</b></h3>
+                        </div>
+                        </body>
+                    </html>`;
+                    $('html').html(htmlString);
+                    setTimeout(() => {
+                        window.location.replace("/resumes");
+                      }, 2000);
+                } else {
+                    json = result.data;
+                    afterInitalize()
+                }
+                
             })
     }
 
@@ -122,35 +141,35 @@ function body() {
                     "items": [
                         {
                             "title": "Name",
-                            "isSignleInput": true,
+                            "isSingleInput": true,
                             "type": "string",
                             "target": "name.value",
                             "placeholder": "Your Name"
                         },
                         {
                             "title": "Job",
-                            "isSignleInput": true,
+                            "isSingleInput": true,
                             "type": "string",
                             "target": "job.value",
                             "placeholder": "Your Job"
                         },
                         {
                             "title": "Phone Number",
-                            "isSignleInput": true,
+                            "isSingleInput": true,
                             "type": "string",
                             "target": "phone.value",
                             "placeholder": "Your Phone Number"
                         },
                         {
                             "title": "Email Address",
-                            "isSignleInput": true,
+                            "isSingleInput": true,
                             "type": "string",
                             "target": "email.value",
                             "placeholder": "Your Email Address"
                         },
                         {
                             "title": "Location",
-                            "isSignleInput": true,
+                            "isSingleInput": true,
                             "type": "string",
                             "target": "location.value",
                             "placeholder": "Your Location"
@@ -159,15 +178,17 @@ function body() {
                             "title": "External Links",
                             "target": "external-links",
                             "desc": "For fontawesome icons, you can go to <a href=\"https://fontawesome.com/search\">Fontawesome.com</a><br><br>",
-                            "isSignleInput": false,
+                            "isSingleInput": false,
                             "type": [
                                 {
                                     "type": "string",
-                                    "target": "fontawesomeIcon"
+                                    "target": "fontawesomeIcon",
+                                    "placeholder": "Fontawesome Icon Class"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "value"
+                                    "target": "value",
+                                    "placeholder": "Url for specific external link"
                                 }
                             ]
                         }
@@ -180,40 +201,47 @@ function body() {
                             "title": "Experience",
                             "target": "experiences",
                             "desc": "In here you able to fill your working experiences.<br><br>",
-                            "isSignleInput": false,
+                            "isSingleInput": false,
                             "type": [
                                 {
                                     "type": "string",
-                                    "target": "job.value"
+                                    "target": "job.value",
+                                    "placeholder": "Job Name"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "company.value"
+                                    "target": "company.value",
+                                    "placeholder": "Company Name"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "working_period.value.start"
+                                    "target": "working_period.value.start",
+                                    "placeholder": "Beginning of Work Period"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "working_period.value.end"
+                                    "target": "working_period.value.end",
+                                    "placeholder": "End of Work Period"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "location.value"
+                                    "target": "location.value",
+                                    "placeholder": "Location"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "description.value"
+                                    "target": "description.value",
+                                    "placeholder": "Description"
                                 },
                                 {
-                                    "isSignleInput": false,
+                                    "isSingleInput": false,
                                     "title": "Points",
                                     "target": "points",
                                     "type": [
                                         {
                                             "type": "string",
-                                            "target": "value"
+                                            "target": "value",
+                                            "placeholder": "one of importance point"
                                         }
                                     ]
                                 }
@@ -228,40 +256,47 @@ function body() {
                             "title": "Education",
                             "target": "education",
                             "desc": "In here you able to fill your educational information.<br><br>",
-                            "isSignleInput": false,
+                            "isSingleInput": false,
                             "type": [
                                 {
                                     "type": "string",
-                                    "target": "branch.value"
+                                    "target": "branch.value",
+                                    "placeholder": "Branch"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "school.value"
+                                    "target": "school.value",
+                                    "placeholder": "School Name"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "education_period.value.start"
+                                    "target": "education_period.value.start",
+                                    "placeholder": "Beginning of Work Period"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "education_period.value.end"
+                                    "target": "education_period.value.end",
+                                    "placeholder": "End of Work Period"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "location.value"
+                                    "target": "location.value",
+                                    "placeholder": "Location"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "description.value"
+                                    "target": "description.value",
+                                    "placeholder": "Description"
                                 },
                                 {
-                                    "isSignleInput": false,
+                                    "isSingleInput": false,
                                     "title": "Points",
                                     "target": "points",
                                     "type": [
                                         {
                                             "type": "string",
-                                            "target": "value"
+                                            "target": "value",
+                                            "placeholder": "one of importance point"
                                         }
                                     ]
                                 }
@@ -273,13 +308,14 @@ function body() {
                     "title": "Skills",
                     "items": [
                         {
-                            "isSignleInput": false,
+                            "isSingleInput": false,
                             "title": "Skills",
                             "target": "skills",
                             "type": [
                                 {
                                     "type": "string",
-                                    "target": "value"
+                                    "target": "value",
+                                    "placeholder": "Your Skill"
                                 }
                             ]
                         }
@@ -287,7 +323,7 @@ function body() {
                 },
                 {
                     "title": "Languages",
-                    "isSignleInput": false,
+                    "isSingleInput": false,
                     "target": "languages",
                     "items": [
                         {
@@ -296,15 +332,18 @@ function body() {
                             "type": [
                                 {
                                     "type": "string",
-                                    "target": "language.value"
+                                    "target": "language.value",
+                                    "placeholder": "Language Name"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "state.value"
+                                    "target": "state.value",
+                                    "placeholder": "State of your level(eg. Beginner or Advenced)"
                                 },
                                 {
                                     "type": "string",
-                                    "target": "percent.value"
+                                    "target": "percent.value",
+                                    "placeholder": "Percent of your state (0-100)"
                                 },
                             ]
                         }
@@ -355,7 +394,7 @@ function body() {
                     const collapsible = document.createElement("ul");
                     $(collapsible).addClass("collapsible")
                     catagoria.items.forEach(function (item) {
-                        if (item.isSignleInput) {
+                        if (item.isSingleInput) {
                             if (item.type === 'string') {
                                 const dynamic_inside_li = document.createElement("li");
                                 const dynamic_inside_header = document.createElement("div");
@@ -516,7 +555,7 @@ function body() {
                                     $(dynamic_array_inputs).append(dynamic_remove_div)
 
                                     item.type.forEach((type_array_item) => {
-                                        if (type_array_item.isSignleInput === false) {
+                                        if (type_array_item.isSingleInput === false) {
                                             const collapsible_clone = document.createElement("ul");
                                             $(collapsible_clone).addClass("collapsible")
                                             const dynamic_inside_li_clone = document.createElement("li");
@@ -668,7 +707,7 @@ function body() {
                                     $(dynamic_array_inputs).append(dynamic_remove_div)
 
                                     item.type.forEach((type_array_item) => {
-                                        if (type_array_item.isSignleInput === false) {
+                                        if (type_array_item.isSingleInput === false) {
                                             const collapsible_clone = document.createElement("ul");
                                             $(collapsible_clone).addClass("collapsible")
                                             const dynamic_inside_li_clone = document.createElement("li");
@@ -792,7 +831,7 @@ function body() {
 
                                 })
 
-                                
+
                                 $(dynamic_inside_body).append(dynamic_inside_list)
                                 $(dynamic_inside_body).append(dynamic_add_new_item)
                             }
@@ -863,6 +902,68 @@ function body() {
                     $('#current-scala').html('Current scale: ' + $('#scale').val())
                     left = 1;
                 })
+
+                let isLeftMouseDown = false;
+
+                document.addEventListener('mousedown', handleMouseDown);
+                document.addEventListener('mouseup', handleMouseUp);
+
+                function handleMouseDown(event) {
+                    if (event.button === 0) { // 0 represents the left mouse button
+                        isLeftMouseDown = true;
+                    }
+                }
+
+                function handleMouseUp(event) {
+                    if (event.button === 0) { // 0 represents the left mouse button
+                        isLeftMouseDown = false;
+                    }
+                }
+
+
+                function dragPanel() {
+                    // Select the element to be moved
+                    const elementToMove = document.getElementsByClassName('right-move')[0];
+
+                    // Variable to track if the element is being dragged
+                    let isDragging = false;
+
+                    // Variables to store the initial position of the element and mouse cursor
+                    let initialX, initialY, offsetX, offsetY, initalsizex;
+
+                    // Add event listeners to start and stop dragging
+                    elementToMove.addEventListener('mousedown', startDragging);
+                    elementToMove.addEventListener('mouseup', stopDragging);
+
+                    // Function to start dragging
+                    function startDragging(event) {
+                        isDragging = true;
+                        initialX = event.clientX;
+                        initialY = event.clientY;
+                        offsetX = 0;
+                        offsetY = 0;
+                        initalsizex = Number($('.left').css('min-width').slice(0, -2))
+                        document.addEventListener('mousemove', moveElement);
+                    }
+
+                    // Function to stop dragging
+                    function stopDragging() {
+                        isDragging = false;
+                        document.removeEventListener('mousemove', moveElement);
+                    }
+
+                    // Function to move the element with the mouse cursor
+                    function moveElement(event) {
+                        if (!isLeftMouseDown) stopDragging();
+                        if (isDragging) {
+                            offsetX = event.clientX - initialX;
+                            $('.left').css('min-width', initalsizex + offsetX)
+                        }
+                    }
+
+                }
+
+                dragPanel();
             }
 
             loadJson()
