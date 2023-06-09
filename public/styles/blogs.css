@@ -134,12 +134,16 @@ body {
 }
 /* END */
 
-
-
-.yourcode {
-    height: 80vh;
+.cat {
     display: flex;
     flex-direction: column;
+}
+
+.yourcode {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
 }
 
 .center {
