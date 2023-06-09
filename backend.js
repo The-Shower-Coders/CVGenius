@@ -52,9 +52,7 @@ function setupDatabase() {
         deprecationErrors: true,
       }
     });
-    // Connect the client to the server	(optional starting in v4.7)
     client.connect();
-    // Send a ping to confirm a successful connection
     client.db("admin").command({ ping: 1 });
     console.log(`[${'OKEY'.green}${'] Successfully connected to MongoDB.'.blue}`.blue)
     CVGeniusDB = client.db("CVGenius");
@@ -385,10 +383,7 @@ function setupRoutes() {
   });
 
   app.get('/api/create', async (req, res) => {
-    const
-      userid = req.query.userid,
-      projectname = req.query.projectname,
-      template = req.query.template;
+    const {userid, projectname, template} = req.query;
 
     // check undefined parameters
     if (isAnyUndefined(userid, projectname, template)) {
@@ -415,7 +410,7 @@ function setupRoutes() {
       return res.send({ code: -1 })
     }
 
-    const blog = await blogs.findOne({ blogid: blogid });
+    const blog = await blogs.findOne({ blogid });
 
     if (!blog) {
       return res.send({ code: -1 });

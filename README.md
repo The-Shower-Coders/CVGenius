@@ -97,7 +97,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Architecture
 
-![image](https://github.com/The-Shower-Coders/CVGenius/assets/77299279/491e9159-b642-4d34-932d-6c93da673f07)
+![Untitled](https://github.com/The-Shower-Coders/CVGenius/assets/77299279/74296d7f-19fb-49d6-bc2c-34613074566b)
 
 ### Prerequisites
 
