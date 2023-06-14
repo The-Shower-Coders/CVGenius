@@ -177,7 +177,7 @@ function body() {
                         {
                             "title": "External Links",
                             "target": "external-links",
-                            "desc": "For fontawesome icons, you can go to <a href=\"https://fontawesome.com/search\">Fontawesome.com</a><br><br>",
+                            "desc": "For fontawesome icons, you can go to <a href=\"https://fontawesome.com/search\" target=\"_blank\">Fontawesome.com</a><br><br>",
                             "isSingleInput": false,
                             "type": [
                                 {

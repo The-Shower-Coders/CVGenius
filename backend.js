@@ -75,20 +75,10 @@ function setupRoutes() {
   // --------------------------------------------------------------------------
 
   app.get('/', async (req, res) => {
-    // Yakında yorum satırını silicem. ~ Murat
-    // if (req.cookies.userid) {
-    //   res.redirect('/resumes');
-    //   return
-    // }
     res.sendFile(__dirname + '/views/index.html');
   });
 
   app.get('/pricing', async (req, res) => {
-    // Yakında yorum satırını silicem. ~ Murat
-    // if (req.cookies.userid) {
-    //   res.redirect('/resumes');
-    //   return
-    // }
     res.sendFile(__dirname + '/views/pricing.html');
   });
 
@@ -238,12 +228,14 @@ function setupRoutes() {
   app.get('/api/signin', async (req, res) => {
     // get values from query params
     let nameormail = req.query.nameormail,
-      pass = sha1(req.query.password);
+      pass = req.query.password;
 
     // check undefined parameters
     if (isAnyUndefined(nameormail, pass)) {
       return res.send({ code: -1 })
     }
+
+    pass = sha1(req.query.password)
 
     const existingUser = await accounts.findOne({
       $or: [
@@ -340,7 +332,8 @@ function setupRoutes() {
 
   app.get('/api/json2pdf', async (req, res) => {
 
-    if (!req.query.json) {
+    try {
+      if (!req.query.json) {
       res.send({ code: -1 });
     }
     let html = json2html_template_standart(JSON.parse(decodeURIComponent(req.query.json)))
@@ -349,10 +342,9 @@ function setupRoutes() {
     if (!fs.existsSync('./private/temp_previews/')) {
       fs.mkdirSync(directoryPath, { recursive: true });
     }
-    try
-    {
+    try {
       fs.readdirSync(path.join(__dirname, 'private', 'temp_previews')).forEach(file => fs.unlinkSync(path.join(__dirname, 'private', 'temp_previews', file)));
-    } catch { /* IGNORE */}
+    } catch { /* IGNORE */ }
     const filePath = __dirname + '/private/temp_previews/' + uuid + '.pdf';
 
     getBrowserInstance()
@@ -369,6 +361,9 @@ function setupRoutes() {
         console.log(error);
         res.send({ code: -1 });
       });
+    } catch {
+      res.send({ code: -1 });
+    }
   });
 
   app.get('/api/askbard', async (req, res) => {
@@ -387,7 +382,7 @@ function setupRoutes() {
   });
 
   app.get('/api/create', async (req, res) => {
-    const {userid, projectname, template} = req.query;
+    const { userid, projectname, template } = req.query;
 
     // check undefined parameters
     if (isAnyUndefined(userid, projectname, template)) {
@@ -434,7 +429,7 @@ function setupRoutes() {
         res.send({ code: -1 });
       });
   });
-  
+
 
   console.log(`[${'OKEY'.green}${'] APIs configured.'.blue}`.blue)
 }
